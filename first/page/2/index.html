@@ -650,82 +650,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/07/%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/url.jpg">
-      <meta itemprop="name" content="SMTTY">
-      <meta itemprop="description" content="我的编程算法学习笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SNotes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/07/%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">链表</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-07 00:00:00" itemprop="dateCreated datePublished" datetime="2022-11-07T00:00:00+08:00">2022-11-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" itemprop="url" rel="index"><span itemprop="name">算法模板</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E9%93%BE%E8%A1%A8/" itemprop="url" rel="index"><span itemprop="name">链表</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="单链表："><a href="#单链表：" class="headerlink" title="单链表："></a>单链表：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// head存储链表头，e[]存储节点的值，ne[]存储节点的next指针，idx表示当前用到了哪个节点</span></span><br><span class="line"><span class="type">int</span> head, e[N], ne[N], idx;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    head = <span class="number">-1</span>;</span><br><span class="line">    idx = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在链表头插入一个数a</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[idx] = a, ne[idx] = head, head = idx ++ ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将头结点删除，需要保证头结点存在</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">remove</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    head = ne[head];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="双链表："><a href="#双链表：" class="headerlink" title="双链表："></a>双链表：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// e[]表示节点的值，l[]表示节点的左指针，r[]表示节点的右指针，idx表示当前用到了哪个节点</span></span><br><span class="line"><span class="type">int</span> e[N], l[N], r[N], idx;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//0是左端点，1是右端点</span></span><br><span class="line">    r[<span class="number">0</span>] = <span class="number">1</span>, l[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    idx = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在节点a的右边插入一个数x</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[idx] = x;</span><br><span class="line">    l[idx] = a, r[idx] = r[a];</span><br><span class="line">    l[r[a]] = idx, r[a] = idx ++ ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除节点a</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">remove</span><span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    l[r[a]] = l[a];</span><br><span class="line">    r[l[a]] = r[a];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/07/%E7%A6%BB%E6%95%A3%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -787,6 +711,82 @@
 
 <p>手写的哈希表链接：<a href="">哈希表</a></p>
 
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/07/%E9%93%BE%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/url.jpg">
+      <meta itemprop="name" content="SMTTY">
+      <meta itemprop="description" content="我的编程算法学习笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SNotes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/07/%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">链表</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-07 00:00:00" itemprop="dateCreated datePublished" datetime="2022-11-07T00:00:00+08:00">2022-11-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" itemprop="url" rel="index"><span itemprop="name">算法模板</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E9%93%BE%E8%A1%A8/" itemprop="url" rel="index"><span itemprop="name">链表</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="单链表："><a href="#单链表：" class="headerlink" title="单链表："></a>单链表：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// head存储链表头，e[]存储节点的值，ne[]存储节点的next指针，idx表示当前用到了哪个节点</span></span><br><span class="line"><span class="type">int</span> head, e[N], ne[N], idx;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    head = <span class="number">-1</span>;</span><br><span class="line">    idx = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在链表头插入一个数a</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[idx] = a, ne[idx] = head, head = idx ++ ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将头结点删除，需要保证头结点存在</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">remove</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    head = ne[head];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="双链表："><a href="#双链表：" class="headerlink" title="双链表："></a>双链表：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// e[]表示节点的值，l[]表示节点的左指针，r[]表示节点的右指针，idx表示当前用到了哪个节点</span></span><br><span class="line"><span class="type">int</span> e[N], l[N], r[N], idx;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//0是左端点，1是右端点</span></span><br><span class="line">    r[<span class="number">0</span>] = <span class="number">1</span>, l[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    idx = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在节点a的右边插入一个数x</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[idx] = x;</span><br><span class="line">    l[idx] = a, r[idx] = r[a];</span><br><span class="line">    l[r[a]] = idx, r[a] = idx ++ ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除节点a</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">remove</span><span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    l[r[a]] = l[a];</span><br><span class="line">    r[l[a]] = r[a];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -881,7 +881,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/05/CF1746A.Maxmina/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/05/CF1754A.Technical%20Support/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/url.jpg">
@@ -895,7 +895,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/11/05/CF1746A.Maxmina/" class="post-title-link" itemprop="url">CF1746A.Maxmina</a>
+            <a href="/2022/11/05/CF1754A.Technical%20Support/" class="post-title-link" itemprop="url">CF1754A.Technical Support</a>
         </h2>
 
         <div class="post-meta">
@@ -921,15 +921,15 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%AE%B0/Codeforces/Codeforces-Global-Round-23/" itemprop="url" rel="index"><span itemprop="name">Codeforces Global Round 23</span></a>
+                  <a href="/categories/%E9%A2%98%E8%AE%B0/Codeforces/Codeforces-Round-829-Div-2/" itemprop="url" rel="index"><span itemprop="name">Codeforces Round#829 (Div.2)</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%AE%B0/Codeforces/Codeforces-Global-Round-23/D800/" itemprop="url" rel="index"><span itemprop="name">D800</span></a>
+                  <a href="/categories/%E9%A2%98%E8%AE%B0/Codeforces/Codeforces-Round-829-Div-2/D800/" itemprop="url" rel="index"><span itemprop="name">D800</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%AE%B0/Codeforces/Codeforces-Global-Round-23/D800/%E8%B4%AA%E5%BF%83/" itemprop="url" rel="index"><span itemprop="name">贪心</span></a>
+                  <a href="/categories/%E9%A2%98%E8%AE%B0/Codeforces/Codeforces-Round-829-Div-2/D800/%E8%B4%AA%E5%BF%83/" itemprop="url" rel="index"><span itemprop="name">贪心</span></a>
                 </span>
             </span>
 
@@ -944,10 +944,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>原题链接<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1746/problem/A">CF1746A</a></p>
-<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>总共有t组数字，每组数据给出一个序列长度n和一个数字k，接下来会有n个数（记作a<sub>1</sub>, a<sub>2</sub>,…, a<sub>n</sub>）且仅为0或1。<br>可以执行以下两种操作：<br>1.选择一个数字i∈[1, n - 1]，使得a<sub>i</sub> &#x3D; a<sub>i+1</sub> &#x3D; min(a<sub>i</sub>, a<sub>i+1</sub>)，每执行一次，序列长度n减少1。<br>2.选择一个数字i∈[1, n - k + 1]，使得a<sub>i</sub>到a<sub>i+k-1</sub>这k个数等于这个区间的最大值，每执行一次，序列长度n减少k - 1。<br>问：执行若干操作后能否使n &#x3D; 1的同时a<sub>1</sub> &#x3D; 1，若能输出YES，不能就输出NO。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 1000，2 &lt;&#x3D; k &lt;&#x3D; n &lt;&#x3D; 50。</p>
-<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>仔细分析两个操作，发现两个操作都可以针对到序列中的全部元素，即从1到n的元素都可以被操作到，因为序列元素非0即1，如果序列中存在1，那么操作2可以把序列中所有元素替换为1，若长度n仍不为1，操作1、2都可以在不对1更改的情况下使n减至1；如果序列中不存在1，那么任何操作都不能制造一个1出来，则不能满足题意。<br>此时问题就简化到给出序列是否含有1。</p>
-<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> _;</span><br><span class="line">    cin &gt;&gt; _;</span><br><span class="line">    <span class="keyword">while</span> (_ -- )&#123;</span><br><span class="line">        <span class="type">int</span> n, k;</span><br><span class="line">        <span class="type">bool</span> f = <span class="literal">false</span>;</span><br><span class="line">        cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ )&#123;</span><br><span class="line">            cin &gt;&gt; k;</span><br><span class="line">            <span class="keyword">if</span>(k)</span><br><span class="line">                f = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (f)</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">&quot;YES&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">&quot;NO&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <p>原题链接<a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1754/A">CF1754A</a></p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>总共有t组数据，每组数据给出一个n，随后给出n个字符，且字符仅为Q或者A。<br>问：所有的Q能否在其后面找到A配对，每个Q、A只能配对一次，能就输出Yes，不能就输出No。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 500，1 &lt;&#x3D; n &lt;&#x3D; 100。</p>
+<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>就是判断每个Q之后有没有A能配对，且每个A只能和一个Q配对。我们可以先定义一个记录还未配对的Q的个数的变量cnt，每读到Q，cnt+1，读到A，cnt-1，但是注意一处特判：如果cnt为零，且当前读入字符为A，则不必执行cnt-1，因为仅需要保证每个Q都有A配对，不需要每个A都有Q去配对，因此cnt&#x3D;0时，读入A，直接跳过。</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> _;</span><br><span class="line">    cin &gt;&gt; _;</span><br><span class="line">    <span class="keyword">while</span> (_ -- )&#123;</span><br><span class="line">        <span class="type">int</span> n, cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="type">char</span> c;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ )&#123;</span><br><span class="line">            cin &gt;&gt; c;</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="string">&#x27;A&#x27;</span> &amp;&amp; cnt == <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="string">&#x27;Q&#x27;</span>)</span><br><span class="line">                cnt++;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                cnt--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cnt == <span class="number">0</span>)</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">&quot;Yes&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">&quot;No&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
