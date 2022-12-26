@@ -1,54 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>CF1715B.Beautiful Array</title>
-    <url>//post/CF1715B.Beautiful%20Array.html</url>
-    <content><![CDATA[<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>定义长度为n的，仅包含非负数的《美丽的数组a》满足如下条件：<br>1.Σa<sub>i</sub> &#x3D; s；<br>2.Σ[a<sub>i</sub> &#x2F; k] &#x3D; b(设[]为取整符号)。<br>给出t组数据，每组数据给出n，k，b，s，如果可以构造出美丽的数组，输出一中满足条件的情况即可，如果无法构成，则输出-1。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 1000，1 &lt;&#x3D; n &lt;&#x3D; 10<sup>5</sup>，1 &lt;&#x3D; k &lt;&#x3D; 10<sup>9</sup>，0 &lt;&#x3D; b &lt;&#x3D; 10<sup>9</sup>，0 &lt;&#x3D; s &lt;&#x3D; 10<sup>18</sup>。</p>
-<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
-using namespace std;
- 
-int main()&#123;
-    int _;
-    cin &gt;&gt; _;
-    while (_ -- )&#123;
-        int n;
-        long long k, b, s;
-        cin &gt;&gt; n &gt;&gt; k &gt;&gt; b &gt;&gt; s;
-        if (k * (b + 1) - 1 + (n - 1) * (k - 1) &lt; s)&#123;
-            puts(&quot;-1&quot;);
-            continue;
-        &#125;
-        if (s &#x2F; k &lt; b)&#123;
-            puts(&quot;-1&quot;);
-            continue;
-        &#125;
-        long long t &#x3D; min(k * (b + 1) - 1, s);
-        cout &lt;&lt; t &lt;&lt; &#39; &#39;;
-        s -&#x3D; t;
-        for (int i &#x3D; 1; i &lt; n; i ++ )&#123;
-            t &#x3D; min(k - 1, s);
-            cout &lt;&lt; t &lt;&lt; &#39; &#39;;
-            s -&#x3D; t;
-        &#125;
-        puts(&quot;&quot;);
-    &#125;
-&#125;</code></pre>]]></content>
-      <categories>
-        <category>题记</category>
-        <category>Codeforces</category>
-        <category>Codeforces Round#816 (Div. 2)</category>
-        <category>D1000</category>
-        <category>贪心</category>
-      </categories>
-      <tags>
-        <tag>题记</tag>
-        <tag>codeforces</tag>
-        <tag>Codeforces Round#816 (Div. 2)</tag>
-        <tag>D1000</tag>
-        <tag>贪心</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CF1716B.Permutation Chain</title>
     <url>//post/CF1716B.Permutation%20Chain.html</url>
     <content><![CDATA[<p>原题链接<a href="https://codeforces.com/contest/1716/problem/B">CF1716B</a></p>
@@ -135,6 +87,112 @@ int main()&#123;
       </tags>
   </entry>
   <entry>
+    <title>CF1715B.Beautiful Array</title>
+    <url>//post/CF1715B.Beautiful%20Array.html</url>
+    <content><![CDATA[<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>定义长度为n的，仅包含非负数的《美丽的数组a》满足如下条件：<br>1.Σa<sub>i</sub> &#x3D; s；<br>2.Σ[a<sub>i</sub> &#x2F; k] &#x3D; b(设[]为取整符号)。<br>给出t组数据，每组数据给出n，k，b，s，如果可以构造出美丽的数组，输出一中满足条件的情况即可，如果无法构成，则输出-1。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 1000，1 &lt;&#x3D; n &lt;&#x3D; 10<sup>5</sup>，1 &lt;&#x3D; k &lt;&#x3D; 10<sup>9</sup>，0 &lt;&#x3D; b &lt;&#x3D; 10<sup>9</sup>，0 &lt;&#x3D; s &lt;&#x3D; 10<sup>18</sup>。</p>
+<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+ 
+int main()&#123;
+    int _;
+    cin &gt;&gt; _;
+    while (_ -- )&#123;
+        int n;
+        long long k, b, s;
+        cin &gt;&gt; n &gt;&gt; k &gt;&gt; b &gt;&gt; s;
+        if (k * (b + 1) - 1 + (n - 1) * (k - 1) &lt; s)&#123;
+            puts(&quot;-1&quot;);
+            continue;
+        &#125;
+        if (s &#x2F; k &lt; b)&#123;
+            puts(&quot;-1&quot;);
+            continue;
+        &#125;
+        long long t &#x3D; min(k * (b + 1) - 1, s);
+        cout &lt;&lt; t &lt;&lt; &#39; &#39;;
+        s -&#x3D; t;
+        for (int i &#x3D; 1; i &lt; n; i ++ )&#123;
+            t &#x3D; min(k - 1, s);
+            cout &lt;&lt; t &lt;&lt; &#39; &#39;;
+            s -&#x3D; t;
+        &#125;
+        puts(&quot;&quot;);
+    &#125;
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>题记</category>
+        <category>Codeforces</category>
+        <category>Codeforces Round#816 (Div. 2)</category>
+        <category>D1000</category>
+        <category>贪心</category>
+      </categories>
+      <tags>
+        <tag>题记</tag>
+        <tag>codeforces</tag>
+        <tag>Codeforces Round#816 (Div. 2)</tag>
+        <tag>D1000</tag>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CF1742E.Scuza</title>
+    <url>//post/CF1742E.Scuza.html</url>
+    <content><![CDATA[<p>原题链接<a href="https://codeforces.com/problemset/problem/1742/E">CF1742E</a></p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有这么一段楼梯，总共有n级台阶，设地面高度是0，每段楼梯距离前一级楼梯(或者地面)有一定高度a<sub>i</sub>，总共有q个问题，每个问题给出一个人所能跨上的最高距离，我们需要计算出这个人最高能上升的高度。<br>共给出t组数据，每组数据第一行给出n，q表示台阶数和问题个数，第二行有n个数字，表示每级台阶高度，第三行有q个数字，表示每个问题中所能跨上的最大高度；对于输出，每组数据的答案用空格隔开，每组数据输出一行。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 100，1 &lt;&#x3D; n,q &lt;&#x3D; 2*10<sup>5</sup>，1 &lt;&#x3D; a<sub>i</sub> &lt;&#x3D; 10<sup>9</sup>，0 &lt;&#x3D; k<sub>i</sub> &lt;&#x3D; 10<sup>9</sup>，Σn &lt;&#x3D; 2*10<sup>5</sup>，Σq &lt;&#x3D; 2*10<sup>5</sup>。</p>
+<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>分析可知，这段楼梯各级高度并不一定是单调递增的，也就是说可能在一级较高的楼梯后面可能存在很多较低的楼梯，也就是说我们可以预处理出来一串数字，代表这个人最小跨上高度和这个高度对应的上升高度；那么怎么构造这个数组呢，可以在读入的时候记录当前读入的每级台阶的最大高度，如果读入的高度小于最大高度，那么当前坐标最大上升高度加上这级台阶高度，否则，替换最大高度，坐标++，最大上升高度等于上一坐标最大上升高度加上这一级台阶高度。<br>预处理如上，接下来对于每一个问题，我们可以采用二分查找确定答案，C++中upper_bound的内部实现就是二分查找，直接使用即可。<br>为了防止这个人最大跨上高度大于最大台阶高度而使答案错误，我在预处理数组后端添加了一个无限大。</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+
+const int N &#x3D; 200010;
+
+long long a[N], b[N], idx;
+
+int main()&#123;
+    int _;
+    cin &gt;&gt; _;
+    while (_ -- )&#123;
+        int n, q, x, t;
+        cin &gt;&gt; n &gt;&gt; q;
+        idx &#x3D; 0;
+        a[0] &#x3D; 0, b[0] &#x3D; 0;
+        for (int i &#x3D; 0; i &lt; n; i ++ )&#123;
+            cin &gt;&gt; x;
+            if (x &gt; a[idx])&#123;
+                idx++;
+                a[idx] &#x3D; x;
+                b[idx] &#x3D; x + b[idx - 1];
+            &#125;
+            else
+                b[idx] +&#x3D; x;
+        &#125;
+        a[idx + 1] &#x3D; 0x3f3f3f3f;
+        while (q--) &#123;
+            cin &gt;&gt; x;
+            t &#x3D; upper_bound(a, a + idx + 1, x) - a;
+            cout &lt;&lt; b[t - 1] &lt;&lt; &#39; &#39;;
+            &#125;
+        puts(&quot;&quot;);
+    &#125;
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>题记</category>
+        <category>Codeforces</category>
+        <category>Codeforces Round#827 (Div. 4)</category>
+        <category>D1200</category>
+        <category>贪心</category>
+        <category>二分查找</category>
+      </categories>
+      <tags>
+        <tag>题记</tag>
+        <tag>codeforces</tag>
+        <tag>贪心</tag>
+        <tag>Codeforces Round#827 (Div. 4)</tag>
+        <tag>D1200</tag>
+        <tag>二分查找</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CF1598B.Groups</title>
     <url>//post/CF1598B.Groups.html</url>
     <content><![CDATA[<p>原题链接<a href="https://codeforces.com/problemset/problem/1598/B">CF1598B</a></p>
@@ -209,6 +267,275 @@ int main()&#123;
       </tags>
   </entry>
   <entry>
+    <title>CF1743C.Save the Magazines</title>
+    <url>//post/CF1743C.Save%20the%20Magazines.html</url>
+    <content><![CDATA[<p>原题链接<a href="https://codeforces.com/problemset/problem/1743/C">CF1743C</a></p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有个人收集了很多有价值的报纸，分别放在了从编号1到n的n个箱子中，有个箱子有盖子，而有的箱子没有，记第i个箱子中的报纸数为a<sub>i</sub>;突然！就很突然，下雨了，有盖子的箱子中的报纸不会被淋湿，而没盖子的箱子中报纸会被淋湿，这个人想去拯救尽可能多的报纸，所以他需要去移动盖子，而盖子有一定的移动规律：每个盖子最多只能向左移动一位，即当n&gt;&#x3D;i&gt;&#x3D;2时，第i个盖子如果移动，只能被移动到第编号i-1的箱子上。问：这个人最多能使多少报纸不被淋湿。<br>数据说明：共有t组数据，每组数据第一行给出n代表箱子个数，接下来第一行有n个数字，代表第i个箱子中的报纸数，下一行是01序列，0表示该位置没有盖子，1表示有盖子。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 10<sup>4</sup>，1 &lt;&#x3D; n &lt;&#x3D; 2*10<sup>5</sup>，1 &lt;&#x3D; a<sub>i</sub> &lt;&#x3D; 10<sup>4</sup>，Σn &lt;&#x3D; 2*10<sup>5</sup>。</p>
+<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>观察01序列，分析盖子移动方式我们可以将序列类型分为三种：<br>1.最前面可能出现一串1，此时盖子是无法也不用去移动的，这些报纸都可以不被淋湿；<br>2.对于一串0，在最后一个0之前的所有报纸都一定会被淋湿，因为一个盖子最多只能向左移动一次，那么最后一个0以前没有盖子的箱子，无论如何移动都不能获得盖子；<br>3.对于0然后多个1的情况，我们可以通过移动使得序列变为一个0和多个1所组成的任何序列，以0111为例，我们可以移动为1011,1101,1110,也可以不移动，即总有一个箱子的报纸会被淋湿。<br>接下来就是对这些情况的处理了，对于第一种情况，只能出现在开头，所以可以预处理，也可以在循环里面进行判断；第二种情况，我们对序列扫描时，如果当前位置和下一位置全是0，则可以跳过考虑当前位置的报纸，因为一定会被淋湿；对于第三种情况，我们需要截取一个0和其之后挨着的所有1，我们可以通过从第一个0一直截取到下一个0，然后考虑第一个0到下一个0之前的1的区间内，一定会有一个箱子的报纸会被淋湿，所以我们希望是最小数量的报纸，这时我们所能挽救的报纸数等于01..1的报纸数之和减去这段中报纸数的最小值；同时考虑到序列最后可能是01111..1，则我们需要在序列最末加上一个0以便扫描。</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+
+const int N &#x3D; 200010;
+
+int a[N], b[N];
+
+int main()&#123;
+    int _;
+    cin &gt;&gt; _;
+    while (_ -- )&#123;
+        int n, sum &#x3D; 0;
+        cin &gt;&gt; n;
+        for (int i &#x3D; 0; i &lt; n; i ++ )
+            scanf(&quot;%1d&quot;, &amp;a[i]);
+        a[n] &#x3D; 0;
+        for (int i &#x3D; 0; i &lt; n; i ++ )
+            cin &gt;&gt; b[i];
+        b[n] &#x3D; 0;
+        for (int i &#x3D; 0; i &lt; n; i++) &#123;
+            if (a[i] &#x3D;&#x3D; 0 &amp;&amp; a[i + 1] &#x3D;&#x3D; 0)
+                continue;
+            if (a[i] &#x3D;&#x3D; 1) &#123;
+                while (a[i]) &#123;
+                    sum +&#x3D; b[i];
+                    i++;
+                &#125;
+                i--;
+            &#125;
+            int m &#x3D; b[i];
+            sum +&#x3D; b[i];
+            while (a[i + 1])&#123;
+                m &#x3D; min(m, b[i + 1]);
+                sum +&#x3D; b[i + 1];
+                i++;
+            &#125;
+            sum -&#x3D; m;
+        &#125;
+        cout &lt;&lt; sum &lt;&lt; endl;
+    &#125;
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>题记</category>
+        <category>Codeforces</category>
+        <category>Educational Codeforces Round 137 (Rated for Div. 2)</category>
+        <category>D1100</category>
+        <category>贪心</category>
+      </categories>
+      <tags>
+        <tag>题记</tag>
+        <tag>codeforces</tag>
+        <tag>贪心</tag>
+        <tag>Educational Codeforces Round 137 (Rated for Div. 2)</tag>
+        <tag>D1100</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CF1744C.Traffic Light</title>
+    <url>//post/CF1744C.Traffic%20Light.html</url>
+    <content><![CDATA[<p>原题链接<a href="https://codeforces.com/contest/1744/problem/C">CF1744C</a></p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有那么有一个有大病的交通信号灯，它会按一个规律一直循环闪烁(依然还是RYG三色，且还是只有绿灯可以通行)，这个规律用一个字符串描述，如rggry，那么它的闪烁就是rggryrggry…循环往复，可以知道现在的红绿灯时什么颜色，但是不知道现在的时间，需要找出保证过马路的最短时间。<br>总共有t组数据，每组数据给出一个n表示红绿灯的最小循环的长度，然后一个字符c表示现在红绿灯的颜色，下一行给出长度为n的字符串，描述红绿灯的循环。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 10<sup>4</sup>，1 &lt;&#x3D; n &lt;&#x3D; 2*10<sup>5</sup>，c∈{r, y, g}。</p>
+<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>题面非常具有迷惑性，虽然是最短时间，但是要的是保证过马路的最短时间，也就是最短时间限制的是看到g就过马路，而保证过马路的最短时间就是在c之后看到g的最大时间间隔；如果是c &#x3D; ‘g’，那么可以直接过，输出0即可，而如果c是r或者y，我们则需要搜寻在其右侧出现的第一个g的距离，最后比较求出最大值(因为是循环闪烁，所以我们可以使S延长一倍，从而达到模拟循环的效果)。<br>为了避免超时，我们需要做出一些优化：当c ≠ ‘g’时，c与其右端第一个g之间的c都可以跳过判断，因为其长度一定小于当前判断的长度。</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+using namespace std;
+
+int main()&#123;
+    int _;
+    cin &gt;&gt; _;
+    while (_ -- )&#123;
+        int n, ans &#x3D; 0, j;
+        char c;
+        string s;
+        cin &gt;&gt; n &gt;&gt; c &gt;&gt; s;
+        if (c &#x3D;&#x3D; &#39;g&#39;)&#123;
+            puts(&quot;0&quot;);
+            continue;
+        &#125;
+        s +&#x3D; s;
+        for (int i &#x3D; 0; i &lt; n; i ++ )&#123;
+            if (c &#x3D;&#x3D; s[i])&#123;
+                for (j &#x3D; i + 1;; j ++ )
+                    if (s[j] &#x3D;&#x3D; &#39;g&#39;)
+                        break;
+            &#125;
+            else
+                continue;
+            ans &#x3D; max(ans, j - i);
+            i &#x3D; j;&#x2F;&#x2F;省略中间部分出现的c
+        &#125;
+        cout &lt;&lt; ans &lt;&lt; endl;
+    &#125;
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>题记</category>
+        <category>Codeforces</category>
+        <category>Codeforces Round#828 (Div. 3)</category>
+        <category>D1000</category>
+        <category>双指针</category>
+      </categories>
+      <tags>
+        <tag>题记</tag>
+        <tag>codeforces</tag>
+        <tag>D1000</tag>
+        <tag>Codeforces Round#828 (Div. 3)</tag>
+        <tag>双指针</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CF1746A.Maxmina</title>
+    <url>//post/CF1746A.Maxmina.html</url>
+    <content><![CDATA[<p>原题链接<a href="https://codeforces.com/contest/1746/problem/A">CF1746A</a></p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>总共有t组数字，每组数据给出一个序列长度n和一个数字k，接下来会有n个数（记作a<sub>1</sub>, a<sub>2</sub>,…, a<sub>n</sub>）且仅为0或1。<br>可以执行以下两种操作：<br>1.选择一个数字i∈[1, n - 1]，使得a<sub>i</sub> &#x3D; a<sub>i+1</sub> &#x3D; min(a<sub>i</sub>, a<sub>i+1</sub>)，每执行一次，序列长度n减少1。<br>2.选择一个数字i∈[1, n - k + 1]，使得a<sub>i</sub>到a<sub>i+k-1</sub>这k个数等于这个区间的最大值，每执行一次，序列长度n减少k - 1。<br>问：执行若干操作后能否使n &#x3D; 1的同时a<sub>1</sub> &#x3D; 1，若能输出YES，不能就输出NO。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 1000，2 &lt;&#x3D; k &lt;&#x3D; n &lt;&#x3D; 50。</p>
+<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>仔细分析两个操作，发现两个操作都可以针对到序列中的全部元素，即从1到n的元素都可以被操作到，因为序列元素非0即1，如果序列中存在1，那么操作2可以把序列中所有元素替换为1，若长度n仍不为1，操作1、2都可以在不对1更改的情况下使n减至1；如果序列中不存在1，那么任何操作都不能制造一个1出来，则不能满足题意。<br>此时问题就简化到给出序列是否含有1。</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+
+int main()&#123;
+    int _;
+    cin &gt;&gt; _;
+    while (_ -- )&#123;
+        int n, k;
+        bool f &#x3D; false;
+        cin &gt;&gt; n &gt;&gt; k;
+        for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )&#123;
+            cin &gt;&gt; k;
+            if(k)
+                f &#x3D; true;
+        &#125;
+        if (f)
+            puts(&quot;YES&quot;);
+        else
+            puts(&quot;NO&quot;);
+    &#125;
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>题记</category>
+        <category>Codeforces</category>
+        <category>Codeforces Global Round 23</category>
+        <category>D800</category>
+        <category>贪心</category>
+      </categories>
+      <tags>
+        <tag>题记</tag>
+        <tag>codeforces</tag>
+        <tag>D800</tag>
+        <tag>贪心</tag>
+        <tag>Codeforces Global Round 23</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CF1744D.Divisibility by 2^n</title>
+    <url>//post/CF1744D.Divisibility%20by%202%5En.html</url>
+    <content><![CDATA[<p>原题链接<a href="https://codeforces.com/problemset/problem/1744/D">CF1744D</a></p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>共有t组数据，每组数据给出一个n，然后在下一行中给出n个数字a<sub>1</sub>,a<sub>2</sub>,…,a<sub>n</sub>。<br>可以执行一种操作：取i∈[1, n]，使得a<sub>i</sub>&#x3D;a<sub>i</sub>*i，对于每个i最多只能执行一次操作。<br>问：操作多少次可以使得Π(pai，求积符号)a<sub>i</sub>能被2<sup>n</sup>整除，若无论如何操作都无法整除则输出-1，否则输出操作次数。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 10<sup>4</sup>，1 &lt;&#x3D; n &lt;&#x3D; 2*10<sup>5</sup>，1 &lt;&#x3D; a<sub>i</sub> &lt;&#x3D; 10<sup>9</sup>；Σn &lt;&#x3D; 2*10<sup>5</sup>。</p>
+<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>我们知道，任何一个大于1的自然数可以分解为有限个质数的积；而2是质数，那么能被2<sup>n</sup>整除，则其可以被分解出至少n个因数2。那么我们统计初始时a<sub>i</sub>中因数2的个数cnt，然后再记录i中因数2的个数，然后对其存储并排序。如果初始时cnt &gt;&#x3D; n，那么不需要任何操作，输出0；反之，则从大到小遍历每个i中因数2的个数，cnt累加因数2的个数，如果在某次相加后cnt &gt;&#x3D; n，输出操作个数；如果遍历完，仍cnt &lt; n，那么输出-1。</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+using namespace std;
+ 
+vector&lt;int&gt; a;
+&#x2F;&#x2F;返还x中因数2的个数 
+int num(int x)&#123;
+    int res &#x3D; 0;
+    while (x % 2 &#x3D;&#x3D; 0)&#123;
+        x &#x2F;&#x3D; 2;
+        res++;
+    &#125;
+    return res;
+&#125;
+ 
+int main()&#123;
+    int _;
+    cin &gt;&gt; _;
+    while (_ -- )&#123;
+        a.clear();
+        int n, cnt &#x3D; 0, x, ans &#x3D; 0;
+        cin &gt;&gt; n;
+        for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )&#123;
+            cin &gt;&gt; x;
+            cnt +&#x3D; num(x);
+            if (i % 2 &#x3D;&#x3D; 0)
+                a.push_back(num(i));
+        &#125;
+        if (cnt &gt;&#x3D; n)&#123;
+            puts(&quot;0&quot;);
+            continue;
+        &#125;
+        sort(a.begin(), a.end());
+        for (int i &#x3D; a.size() - 1; i &gt;&#x3D; 0; i -- )&#123;
+            ans++;
+            cnt +&#x3D; a[i];
+            if (cnt &gt;&#x3D; n)
+                break;
+        &#125;
+        if (cnt &gt;&#x3D; n)
+            cout &lt;&lt; ans &lt;&lt; endl;
+        else
+            puts(&quot;-1&quot;);
+    &#125;
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>题记</category>
+        <category>Codeforces</category>
+        <category>Codeforces Round#828 (Div. 3)</category>
+        <category>D1200</category>
+        <category>贪心</category>
+      </categories>
+      <tags>
+        <tag>题记</tag>
+        <tag>codeforces</tag>
+        <tag>贪心</tag>
+        <tag>D1200</tag>
+        <tag>Codeforces Round#828 (Div. 3)</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CF1754A.Technical Support</title>
+    <url>//post/CF1754A.Technical%20Support.html</url>
+    <content><![CDATA[<p>原题链接<a href="https://codeforces.com/problemset/problem/1754/A">CF1754A</a></p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>总共有t组数据，每组数据给出一个n，随后给出n个字符，且字符仅为Q或者A。<br>问：所有的Q能否在其后面找到A配对，每个Q、A只能配对一次，能就输出Yes，不能就输出No。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 500，1 &lt;&#x3D; n &lt;&#x3D; 100。</p>
+<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>就是判断每个Q之后有没有A能配对，且每个A只能和一个Q配对。我们可以先定义一个记录还未配对的Q的个数的变量cnt，每读到Q，cnt+1，读到A，cnt-1，但是注意一处特判：如果cnt为零，且当前读入字符为A，则不必执行cnt-1，因为仅需要保证每个Q都有A配对，不需要每个A都有Q去配对，因此cnt&#x3D;0时，读入A，直接跳过。</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+ 
+int main()&#123;
+    int _;
+    cin &gt;&gt; _;
+    while (_ -- )&#123;
+        int n, cnt &#x3D; 0;
+        char c;
+        cin &gt;&gt; n;
+        for (int i &#x3D; 0; i &lt; n; i ++ )&#123;
+            cin &gt;&gt; c;
+            if (c &#x3D;&#x3D; &#39;A&#39; &amp;&amp; cnt &#x3D;&#x3D; 0)
+                continue;
+            if (c &#x3D;&#x3D; &#39;Q&#39;)
+                cnt++;
+            else
+                cnt--;
+        &#125;
+        if (cnt &#x3D;&#x3D; 0)
+            puts(&quot;Yes&quot;);
+        else
+            puts(&quot;No&quot;);
+    &#125;
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>题记</category>
+        <category>Codeforces</category>
+        <category>Codeforces Round#829 (Div.2)</category>
+        <category>D800</category>
+        <category>贪心</category>
+      </categories>
+      <tags>
+        <tag>题记</tag>
+        <tag>codeforces</tag>
+        <tag>D800</tag>
+        <tag>贪心</tag>
+        <tag>Codeforces Round#829 (Div.2)</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CF1722D.Line</title>
     <url>//post/CF1722D.Line.html</url>
     <content><![CDATA[<p>原题链接<a href="https://codeforces.com/problemset/problem/1722/D">CF1722D</a></p>
@@ -280,187 +607,6 @@ int main()&#123;
       </tags>
   </entry>
   <entry>
-    <title>CF1744C.Traffic Light</title>
-    <url>//post/CF1744C.Traffic%20Light.html</url>
-    <content><![CDATA[<p>原题链接<a href="https://codeforces.com/contest/1744/problem/C">CF1744C</a></p>
-<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有那么有一个有大病的交通信号灯，它会按一个规律一直循环闪烁(依然还是RYG三色，且还是只有绿灯可以通行)，这个规律用一个字符串描述，如rggry，那么它的闪烁就是rggryrggry…循环往复，可以知道现在的红绿灯时什么颜色，但是不知道现在的时间，需要找出保证过马路的最短时间。<br>总共有t组数据，每组数据给出一个n表示红绿灯的最小循环的长度，然后一个字符c表示现在红绿灯的颜色，下一行给出长度为n的字符串，描述红绿灯的循环。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 10<sup>4</sup>，1 &lt;&#x3D; n &lt;&#x3D; 2*10<sup>5</sup>，c∈{r, y, g}。</p>
-<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>题面非常具有迷惑性，虽然是最短时间，但是要的是保证过马路的最短时间，也就是最短时间限制的是看到g就过马路，而保证过马路的最短时间就是在c之后看到g的最大时间间隔；如果是c &#x3D; ‘g’，那么可以直接过，输出0即可，而如果c是r或者y，我们则需要搜寻在其右侧出现的第一个g的距离，最后比较求出最大值(因为是循环闪烁，所以我们可以使S延长一倍，从而达到模拟循环的效果)。<br>为了避免超时，我们需要做出一些优化：当c ≠ ‘g’时，c与其右端第一个g之间的c都可以跳过判断，因为其长度一定小于当前判断的长度。</p>
-<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
-#include&lt;cstring&gt;
-using namespace std;
-
-int main()&#123;
-    int _;
-    cin &gt;&gt; _;
-    while (_ -- )&#123;
-        int n, ans &#x3D; 0, j;
-        char c;
-        string s;
-        cin &gt;&gt; n &gt;&gt; c &gt;&gt; s;
-        if (c &#x3D;&#x3D; &#39;g&#39;)&#123;
-            puts(&quot;0&quot;);
-            continue;
-        &#125;
-        s +&#x3D; s;
-        for (int i &#x3D; 0; i &lt; n; i ++ )&#123;
-            if (c &#x3D;&#x3D; s[i])&#123;
-                for (j &#x3D; i + 1;; j ++ )
-                    if (s[j] &#x3D;&#x3D; &#39;g&#39;)
-                        break;
-            &#125;
-            else
-                continue;
-            ans &#x3D; max(ans, j - i);
-            i &#x3D; j;&#x2F;&#x2F;省略中间部分出现的c
-        &#125;
-        cout &lt;&lt; ans &lt;&lt; endl;
-    &#125;
-&#125;</code></pre>]]></content>
-      <categories>
-        <category>题记</category>
-        <category>Codeforces</category>
-        <category>Codeforces Round#828 (Div. 3)</category>
-        <category>D1000</category>
-        <category>双指针</category>
-      </categories>
-      <tags>
-        <tag>题记</tag>
-        <tag>codeforces</tag>
-        <tag>D1000</tag>
-        <tag>Codeforces Round#828 (Div. 3)</tag>
-        <tag>双指针</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CF1743C.Save the Magazines</title>
-    <url>//post/CF1743C.Save%20the%20Magazines.html</url>
-    <content><![CDATA[<p>原题链接<a href="https://codeforces.com/problemset/problem/1743/C">CF1743C</a></p>
-<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有个人收集了很多有价值的报纸，分别放在了从编号1到n的n个箱子中，有个箱子有盖子，而有的箱子没有，记第i个箱子中的报纸数为a<sub>i</sub>;突然！就很突然，下雨了，有盖子的箱子中的报纸不会被淋湿，而没盖子的箱子中报纸会被淋湿，这个人想去拯救尽可能多的报纸，所以他需要去移动盖子，而盖子有一定的移动规律：每个盖子最多只能向左移动一位，即当n&gt;&#x3D;i&gt;&#x3D;2时，第i个盖子如果移动，只能被移动到第编号i-1的箱子上。问：这个人最多能使多少报纸不被淋湿。<br>数据说明：共有t组数据，每组数据第一行给出n代表箱子个数，接下来第一行有n个数字，代表第i个箱子中的报纸数，下一行是01序列，0表示该位置没有盖子，1表示有盖子。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 10<sup>4</sup>，1 &lt;&#x3D; n &lt;&#x3D; 2*10<sup>5</sup>，1 &lt;&#x3D; a<sub>i</sub> &lt;&#x3D; 10<sup>4</sup>，Σn &lt;&#x3D; 2*10<sup>5</sup>。</p>
-<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>观察01序列，分析盖子移动方式我们可以将序列类型分为三种：<br>1.最前面可能出现一串1，此时盖子是无法也不用去移动的，这些报纸都可以不被淋湿；<br>2.对于一串0，在最后一个0之前的所有报纸都一定会被淋湿，因为一个盖子最多只能向左移动一次，那么最后一个0以前没有盖子的箱子，无论如何移动都不能获得盖子；<br>3.对于0然后多个1的情况，我们可以通过移动使得序列变为一个0和多个1所组成的任何序列，以0111为例，我们可以移动为1011,1101,1110,也可以不移动，即总有一个箱子的报纸会被淋湿。<br>接下来就是对这些情况的处理了，对于第一种情况，只能出现在开头，所以可以预处理，也可以在循环里面进行判断；第二种情况，我们对序列扫描时，如果当前位置和下一位置全是0，则可以跳过考虑当前位置的报纸，因为一定会被淋湿；对于第三种情况，我们需要截取一个0和其之后挨着的所有1，我们可以通过从第一个0一直截取到下一个0，然后考虑第一个0到下一个0之前的1的区间内，一定会有一个箱子的报纸会被淋湿，所以我们希望是最小数量的报纸，这时我们所能挽救的报纸数等于01..1的报纸数之和减去这段中报纸数的最小值；同时考虑到序列最后可能是01111..1，则我们需要在序列最末加上一个0以便扫描。</p>
-<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
-using namespace std;
-
-const int N &#x3D; 200010;
-
-int a[N], b[N];
-
-int main()&#123;
-    int _;
-    cin &gt;&gt; _;
-    while (_ -- )&#123;
-        int n, sum &#x3D; 0;
-        cin &gt;&gt; n;
-        for (int i &#x3D; 0; i &lt; n; i ++ )
-            scanf(&quot;%1d&quot;, &amp;a[i]);
-        a[n] &#x3D; 0;
-        for (int i &#x3D; 0; i &lt; n; i ++ )
-            cin &gt;&gt; b[i];
-        b[n] &#x3D; 0;
-        for (int i &#x3D; 0; i &lt; n; i++) &#123;
-            if (a[i] &#x3D;&#x3D; 0 &amp;&amp; a[i + 1] &#x3D;&#x3D; 0)
-                continue;
-            if (a[i] &#x3D;&#x3D; 1) &#123;
-                while (a[i]) &#123;
-                    sum +&#x3D; b[i];
-                    i++;
-                &#125;
-                i--;
-            &#125;
-            int m &#x3D; b[i];
-            sum +&#x3D; b[i];
-            while (a[i + 1])&#123;
-                m &#x3D; min(m, b[i + 1]);
-                sum +&#x3D; b[i + 1];
-                i++;
-            &#125;
-            sum -&#x3D; m;
-        &#125;
-        cout &lt;&lt; sum &lt;&lt; endl;
-    &#125;
-&#125;</code></pre>]]></content>
-      <categories>
-        <category>题记</category>
-        <category>Codeforces</category>
-        <category>Educational Codeforces Round 137 (Rated for Div. 2)</category>
-        <category>D1100</category>
-        <category>贪心</category>
-      </categories>
-      <tags>
-        <tag>题记</tag>
-        <tag>codeforces</tag>
-        <tag>贪心</tag>
-        <tag>D1100</tag>
-        <tag>Educational Codeforces Round 137 (Rated for Div. 2)</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CF1744D.Divisibility by 2^n</title>
-    <url>//post/CF1744D.Divisibility%20by%202%5En.html</url>
-    <content><![CDATA[<p>原题链接<a href="https://codeforces.com/problemset/problem/1744/D">CF1744D</a></p>
-<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>共有t组数据，每组数据给出一个n，然后在下一行中给出n个数字a<sub>1</sub>,a<sub>2</sub>,…,a<sub>n</sub>。<br>可以执行一种操作：取i∈[1, n]，使得a<sub>i</sub>&#x3D;a<sub>i</sub>*i，对于每个i最多只能执行一次操作。<br>问：操作多少次可以使得Π(pai，求积符号)a<sub>i</sub>能被2<sup>n</sup>整除，若无论如何操作都无法整除则输出-1，否则输出操作次数。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 10<sup>4</sup>，1 &lt;&#x3D; n &lt;&#x3D; 2*10<sup>5</sup>，1 &lt;&#x3D; a<sub>i</sub> &lt;&#x3D; 10<sup>9</sup>；Σn &lt;&#x3D; 2*10<sup>5</sup>。</p>
-<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>我们知道，任何一个大于1的自然数可以分解为有限个质数的积；而2是质数，那么能被2<sup>n</sup>整除，则其可以被分解出至少n个因数2。那么我们统计初始时a<sub>i</sub>中因数2的个数cnt，然后再记录i中因数2的个数，然后对其存储并排序。如果初始时cnt &gt;&#x3D; n，那么不需要任何操作，输出0；反之，则从大到小遍历每个i中因数2的个数，cnt累加因数2的个数，如果在某次相加后cnt &gt;&#x3D; n，输出操作个数；如果遍历完，仍cnt &lt; n，那么输出-1。</p>
-<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;vector&gt;
-using namespace std;
- 
-vector&lt;int&gt; a;
-&#x2F;&#x2F;返还x中因数2的个数 
-int num(int x)&#123;
-    int res &#x3D; 0;
-    while (x % 2 &#x3D;&#x3D; 0)&#123;
-        x &#x2F;&#x3D; 2;
-        res++;
-    &#125;
-    return res;
-&#125;
- 
-int main()&#123;
-    int _;
-    cin &gt;&gt; _;
-    while (_ -- )&#123;
-        a.clear();
-        int n, cnt &#x3D; 0, x, ans &#x3D; 0;
-        cin &gt;&gt; n;
-        for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )&#123;
-            cin &gt;&gt; x;
-            cnt +&#x3D; num(x);
-            if (i % 2 &#x3D;&#x3D; 0)
-                a.push_back(num(i));
-        &#125;
-        if (cnt &gt;&#x3D; n)&#123;
-            puts(&quot;0&quot;);
-            continue;
-        &#125;
-        sort(a.begin(), a.end());
-        for (int i &#x3D; a.size() - 1; i &gt;&#x3D; 0; i -- )&#123;
-            ans++;
-            cnt +&#x3D; a[i];
-            if (cnt &gt;&#x3D; n)
-                break;
-        &#125;
-        if (cnt &gt;&#x3D; n)
-            cout &lt;&lt; ans &lt;&lt; endl;
-        else
-            puts(&quot;-1&quot;);
-    &#125;
-&#125;</code></pre>]]></content>
-      <categories>
-        <category>题记</category>
-        <category>Codeforces</category>
-        <category>Codeforces Round#828 (Div. 3)</category>
-        <category>D1200</category>
-        <category>贪心</category>
-      </categories>
-      <tags>
-        <tag>题记</tag>
-        <tag>codeforces</tag>
-        <tag>贪心</tag>
-        <tag>Codeforces Round#828 (Div. 3)</tag>
-        <tag>D1200</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CF1749B.Death&#39;s Blessing</title>
     <url>//post/CF1749B.Death&#39;s%20Blessing.html</url>
     <content><![CDATA[<p>原题链接<a href="https://codeforces.com/problemset/problem/1749/B">CF1749B</a></p>
@@ -505,152 +651,6 @@ int main()&#123;
       </tags>
   </entry>
   <entry>
-    <title>CF1746A.Maxmina</title>
-    <url>//post/CF1746A.Maxmina.html</url>
-    <content><![CDATA[<p>原题链接<a href="https://codeforces.com/contest/1746/problem/A">CF1746A</a></p>
-<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>总共有t组数字，每组数据给出一个序列长度n和一个数字k，接下来会有n个数（记作a<sub>1</sub>, a<sub>2</sub>,…, a<sub>n</sub>）且仅为0或1。<br>可以执行以下两种操作：<br>1.选择一个数字i∈[1, n - 1]，使得a<sub>i</sub> &#x3D; a<sub>i+1</sub> &#x3D; min(a<sub>i</sub>, a<sub>i+1</sub>)，每执行一次，序列长度n减少1。<br>2.选择一个数字i∈[1, n - k + 1]，使得a<sub>i</sub>到a<sub>i+k-1</sub>这k个数等于这个区间的最大值，每执行一次，序列长度n减少k - 1。<br>问：执行若干操作后能否使n &#x3D; 1的同时a<sub>1</sub> &#x3D; 1，若能输出YES，不能就输出NO。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 1000，2 &lt;&#x3D; k &lt;&#x3D; n &lt;&#x3D; 50。</p>
-<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>仔细分析两个操作，发现两个操作都可以针对到序列中的全部元素，即从1到n的元素都可以被操作到，因为序列元素非0即1，如果序列中存在1，那么操作2可以把序列中所有元素替换为1，若长度n仍不为1，操作1、2都可以在不对1更改的情况下使n减至1；如果序列中不存在1，那么任何操作都不能制造一个1出来，则不能满足题意。<br>此时问题就简化到给出序列是否含有1。</p>
-<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
-using namespace std;
-
-int main()&#123;
-    int _;
-    cin &gt;&gt; _;
-    while (_ -- )&#123;
-        int n, k;
-        bool f &#x3D; false;
-        cin &gt;&gt; n &gt;&gt; k;
-        for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )&#123;
-            cin &gt;&gt; k;
-            if(k)
-                f &#x3D; true;
-        &#125;
-        if (f)
-            puts(&quot;YES&quot;);
-        else
-            puts(&quot;NO&quot;);
-    &#125;
-&#125;</code></pre>]]></content>
-      <categories>
-        <category>题记</category>
-        <category>Codeforces</category>
-        <category>Codeforces Global Round 23</category>
-        <category>D800</category>
-        <category>贪心</category>
-      </categories>
-      <tags>
-        <tag>题记</tag>
-        <tag>codeforces</tag>
-        <tag>贪心</tag>
-        <tag>D800</tag>
-        <tag>Codeforces Global Round 23</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CF1754A.Technical Support</title>
-    <url>//post/CF1754A.Technical%20Support.html</url>
-    <content><![CDATA[<p>原题链接<a href="https://codeforces.com/problemset/problem/1754/A">CF1754A</a></p>
-<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>总共有t组数据，每组数据给出一个n，随后给出n个字符，且字符仅为Q或者A。<br>问：所有的Q能否在其后面找到A配对，每个Q、A只能配对一次，能就输出Yes，不能就输出No。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 500，1 &lt;&#x3D; n &lt;&#x3D; 100。</p>
-<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>就是判断每个Q之后有没有A能配对，且每个A只能和一个Q配对。我们可以先定义一个记录还未配对的Q的个数的变量cnt，每读到Q，cnt+1，读到A，cnt-1，但是注意一处特判：如果cnt为零，且当前读入字符为A，则不必执行cnt-1，因为仅需要保证每个Q都有A配对，不需要每个A都有Q去配对，因此cnt&#x3D;0时，读入A，直接跳过。</p>
-<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
-using namespace std;
- 
-int main()&#123;
-    int _;
-    cin &gt;&gt; _;
-    while (_ -- )&#123;
-        int n, cnt &#x3D; 0;
-        char c;
-        cin &gt;&gt; n;
-        for (int i &#x3D; 0; i &lt; n; i ++ )&#123;
-            cin &gt;&gt; c;
-            if (c &#x3D;&#x3D; &#39;A&#39; &amp;&amp; cnt &#x3D;&#x3D; 0)
-                continue;
-            if (c &#x3D;&#x3D; &#39;Q&#39;)
-                cnt++;
-            else
-                cnt--;
-        &#125;
-        if (cnt &#x3D;&#x3D; 0)
-            puts(&quot;Yes&quot;);
-        else
-            puts(&quot;No&quot;);
-    &#125;
-&#125;</code></pre>]]></content>
-      <categories>
-        <category>题记</category>
-        <category>Codeforces</category>
-        <category>Codeforces Round#829 (Div.2)</category>
-        <category>D800</category>
-        <category>贪心</category>
-      </categories>
-      <tags>
-        <tag>题记</tag>
-        <tag>codeforces</tag>
-        <tag>贪心</tag>
-        <tag>D800</tag>
-        <tag>Codeforces Round#829 (Div.2)</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CF1742E.Scuza</title>
-    <url>//post/CF1742E.Scuza.html</url>
-    <content><![CDATA[<p>原题链接<a href="https://codeforces.com/problemset/problem/1742/E">CF1742E</a></p>
-<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有这么一段楼梯，总共有n级台阶，设地面高度是0，每段楼梯距离前一级楼梯(或者地面)有一定高度a<sub>i</sub>，总共有q个问题，每个问题给出一个人所能跨上的最高距离，我们需要计算出这个人最高能上升的高度。<br>共给出t组数据，每组数据第一行给出n，q表示台阶数和问题个数，第二行有n个数字，表示每级台阶高度，第三行有q个数字，表示每个问题中所能跨上的最大高度；对于输出，每组数据的答案用空格隔开，每组数据输出一行。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 100，1 &lt;&#x3D; n,q &lt;&#x3D; 2*10<sup>5</sup>，1 &lt;&#x3D; a<sub>i</sub> &lt;&#x3D; 10<sup>9</sup>，0 &lt;&#x3D; k<sub>i</sub> &lt;&#x3D; 10<sup>9</sup>，Σn &lt;&#x3D; 2*10<sup>5</sup>，Σq &lt;&#x3D; 2*10<sup>5</sup>。</p>
-<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>分析可知，这段楼梯各级高度并不一定是单调递增的，也就是说可能在一级较高的楼梯后面可能存在很多较低的楼梯，也就是说我们可以预处理出来一串数字，代表这个人最小跨上高度和这个高度对应的上升高度；那么怎么构造这个数组呢，可以在读入的时候记录当前读入的每级台阶的最大高度，如果读入的高度小于最大高度，那么当前坐标最大上升高度加上这级台阶高度，否则，替换最大高度，坐标++，最大上升高度等于上一坐标最大上升高度加上这一级台阶高度。<br>预处理如上，接下来对于每一个问题，我们可以采用二分查找确定答案，C++中upper_bound的内部实现就是二分查找，直接使用即可。<br>为了防止这个人最大跨上高度大于最大台阶高度而使答案错误，我在预处理数组后端添加了一个无限大。</p>
-<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-using namespace std;
-
-const int N &#x3D; 200010;
-
-long long a[N], b[N], idx;
-
-int main()&#123;
-    int _;
-    cin &gt;&gt; _;
-    while (_ -- )&#123;
-        int n, q, x, t;
-        cin &gt;&gt; n &gt;&gt; q;
-        idx &#x3D; 0;
-        a[0] &#x3D; 0, b[0] &#x3D; 0;
-        for (int i &#x3D; 0; i &lt; n; i ++ )&#123;
-            cin &gt;&gt; x;
-            if (x &gt; a[idx])&#123;
-                idx++;
-                a[idx] &#x3D; x;
-                b[idx] &#x3D; x + b[idx - 1];
-            &#125;
-            else
-                b[idx] +&#x3D; x;
-        &#125;
-        a[idx + 1] &#x3D; 0x3f3f3f3f;
-        while (q--) &#123;
-            cin &gt;&gt; x;
-            t &#x3D; upper_bound(a, a + idx + 1, x) - a;
-            cout &lt;&lt; b[t - 1] &lt;&lt; &#39; &#39;;
-            &#125;
-        puts(&quot;&quot;);
-    &#125;
-&#125;</code></pre>]]></content>
-      <categories>
-        <category>题记</category>
-        <category>Codeforces</category>
-        <category>Codeforces Round#827 (Div. 4)</category>
-        <category>D1200</category>
-        <category>贪心</category>
-        <category>二分查找</category>
-      </categories>
-      <tags>
-        <tag>题记</tag>
-        <tag>codeforces</tag>
-        <tag>贪心</tag>
-        <tag>Codeforces Round#827 (Div. 4)</tag>
-        <tag>D1200</tag>
-        <tag>二分查找</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CF1754B.Kevin and Permutation</title>
     <url>//post/CF1754B.Kevin%20and%20Permutation.html</url>
     <content><![CDATA[<p>原题链接<a href="https://codeforces.com/problemset/problem/1754/B">CF1754B</a></p>
@@ -689,8 +689,8 @@ int main()&#123;
       <tags>
         <tag>题记</tag>
         <tag>codeforces</tag>
-        <tag>贪心</tag>
         <tag>D800</tag>
+        <tag>贪心</tag>
         <tag>Codeforces Round#829 (Div.2)</tag>
       </tags>
   </entry>
@@ -776,6 +776,49 @@ void merge(vector&lt;PII&gt; &amp;segs)
       </tags>
   </entry>
   <entry>
+    <title>前缀和</title>
+    <url>//post/%E5%89%8D%E7%BC%80%E5%92%8C.html</url>
+    <content><![CDATA[<p>前缀和可以将区间和优化成O(1)，即对于区间内的值之和，变成一个公式的计算，如一位前缀和对于[a,b]区间求和转化为S[b] - S[a - 1].</p>
+<h3 id="一维前缀和板子："><a href="#一维前缀和板子：" class="headerlink" title="一维前缀和板子："></a>一维前缀和板子：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">S[i] &#x3D; a[1] + a[2] + ... a[i] &#x2F;&#x2F;预处理
+a[l] + ... + a[r] &#x3D; S[r] - S[l - 1] &#x2F;&#x2F;调用</code></pre>
+
+<h3 id="二维前缀和板子："><a href="#二维前缀和板子：" class="headerlink" title="二维前缀和板子："></a>二维前缀和板子：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">&#x2F;&#x2F;S[i, j] &#x3D; 第i行j列格子左上部分所有元素的和
+&#x2F;&#x2F;以(x1, y1)为左上角，(x2, y2)为右下角的子矩阵的和为
+S[x2, y2] - S[x1 - 1, y2] - S[x2, y1 - 1] + S[x1 - 1, y1 - 1]
+
+S[ i , j ] &#x3D; S[ i - 1 , j ] + S[ i , j - 1] - S[ i - 1 , j - 1] + a[ i , j ]</code></pre>]]></content>
+      <categories>
+        <category>算法模板</category>
+        <category>前缀和</category>
+      </categories>
+      <tags>
+        <tag>算法模板</tag>
+        <tag>前缀和</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客简述</title>
+    <url>//post/%E5%8D%9A%E5%AE%A2%E7%AE%80%E8%BF%B0.html</url>
+    <content><![CDATA[<p>这个博客将被我用作笔记和题记以及听课笔记，也是我做的第一个博客，如果有需要可以通过概览中的洛谷以及CSDN联系到我，或者联系我的QQ：1075506339 也可以。<br>笔记中如有错误，敬请雅正，如有疑惑，欢迎讨论，如有补充，您的宝贵意见将会是我的莫大荣幸。<br>如果我的笔记或是题解对您有所启发，也欢迎小额打赏。</p>
+<h2 id="我可能引用的资源来源于："><a href="#我可能引用的资源来源于：" class="headerlink" title="我可能引用的资源来源于："></a>我可能引用的资源来源于：</h2><h3 id="Acwing"><a href="#Acwing" class="headerlink" title="Acwing"></a><a href="https://www.acwing.com/">Acwing</a></h3><pre><code>性价比极高的编程、算法学习平台，讲解仔细全面，拥有在线编译器，以及丰富的题库及编程经验
+</code></pre>
+<h3 id="洛谷"><a href="#洛谷" class="headerlink" title="洛谷"></a><a href="https://www.luogu.com.cn/">洛谷</a></h3><pre><code>拥有即为广泛的题目，我用作刷题网站，也会去发布一些观点、解题思路和题解
+</code></pre>
+<h3 id="力扣"><a href="#力扣" class="headerlink" title="力扣"></a><a href="https://leetcode.cn/">力扣</a></h3><pre><code>相较于洛谷，力扣更侧重于面试，里面同样拥有丰富的题库，与洛谷混合食用
+</code></pre>
+<h3 id="牛客"><a href="#牛客" class="headerlink" title="牛客"></a><a href="https://www.nowcoder.com/landing">牛客</a></h3><pre><code>另外一个倾向于面试，有着很高知名度的网站，有着许多有趣的题目，同时许多校赛、训练赛、月赛在牛客举办
+</code></pre>
+<h3 id="Codeforces"><a href="#Codeforces" class="headerlink" title="Codeforces"></a><a href="https://codeforces.com/">Codeforces</a></h3><pre><code>cf线上赛有着很高的知名度，题目质量很高，知识点即为全面
+</code></pre>
+<h3 id="Atcoder"><a href="#Atcoder" class="headerlink" title="Atcoder"></a><a href="https://atcoder.jp/">Atcoder</a></h3><pre><code>同样是高质量的线上赛网站
+</code></pre>
+<h3 id="Virtual-Judge"><a href="#Virtual-Judge" class="headerlink" title="Virtual Judge"></a><a href="https://vjudge.net/contest">Virtual Judge</a></h3><pre><code>vj的库十分丰富，很多高校的训练也在此展开
+</code></pre>
+<h3 id="CSDN"><a href="#CSDN" class="headerlink" title="CSDN"></a><a href="https://www.csdn.net/">CSDN</a></h3><pre><code>想必这个也不用什么介绍罢
+</code></pre>
+]]></content>
+  </entry>
+  <entry>
     <title>CF1748B.Diverse Substrings</title>
     <url>//post/CF1748B.Diverse%20Substrings.html</url>
     <content><![CDATA[<p>原题链接<a href="https://codeforces.com/contest/1748/problem/B">CF1748B</a></p>
@@ -828,49 +871,6 @@ int main()&#123;
         <tag>暴力</tag>
         <tag>Codeforces Round#833 (Div. 2)</tag>
         <tag>D1400</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客简述</title>
-    <url>//post/%E5%8D%9A%E5%AE%A2%E7%AE%80%E8%BF%B0.html</url>
-    <content><![CDATA[<p>这个博客将被我用作笔记和题记以及听课笔记，也是我做的第一个博客，如果有需要可以通过概览中的洛谷以及CSDN联系到我，或者联系我的QQ：1075506339 也可以。<br>笔记中如有错误，敬请雅正，如有疑惑，欢迎讨论，如有补充，您的宝贵意见将会是我的莫大荣幸。<br>如果我的笔记或是题解对您有所启发，也欢迎小额打赏。</p>
-<h2 id="我可能引用的资源来源于："><a href="#我可能引用的资源来源于：" class="headerlink" title="我可能引用的资源来源于："></a>我可能引用的资源来源于：</h2><h3 id="Acwing"><a href="#Acwing" class="headerlink" title="Acwing"></a><a href="https://www.acwing.com/">Acwing</a></h3><pre><code>性价比极高的编程、算法学习平台，讲解仔细全面，拥有在线编译器，以及丰富的题库及编程经验
-</code></pre>
-<h3 id="洛谷"><a href="#洛谷" class="headerlink" title="洛谷"></a><a href="https://www.luogu.com.cn/">洛谷</a></h3><pre><code>拥有即为广泛的题目，我用作刷题网站，也会去发布一些观点、解题思路和题解
-</code></pre>
-<h3 id="力扣"><a href="#力扣" class="headerlink" title="力扣"></a><a href="https://leetcode.cn/">力扣</a></h3><pre><code>相较于洛谷，力扣更侧重于面试，里面同样拥有丰富的题库，与洛谷混合食用
-</code></pre>
-<h3 id="牛客"><a href="#牛客" class="headerlink" title="牛客"></a><a href="https://www.nowcoder.com/landing">牛客</a></h3><pre><code>另外一个倾向于面试，有着很高知名度的网站，有着许多有趣的题目，同时许多校赛、训练赛、月赛在牛客举办
-</code></pre>
-<h3 id="Codeforces"><a href="#Codeforces" class="headerlink" title="Codeforces"></a><a href="https://codeforces.com/">Codeforces</a></h3><pre><code>cf线上赛有着很高的知名度，题目质量很高，知识点即为全面
-</code></pre>
-<h3 id="Atcoder"><a href="#Atcoder" class="headerlink" title="Atcoder"></a><a href="https://atcoder.jp/">Atcoder</a></h3><pre><code>同样是高质量的线上赛网站
-</code></pre>
-<h3 id="Virtual-Judge"><a href="#Virtual-Judge" class="headerlink" title="Virtual Judge"></a><a href="https://vjudge.net/contest">Virtual Judge</a></h3><pre><code>vj的库十分丰富，很多高校的训练也在此展开
-</code></pre>
-<h3 id="CSDN"><a href="#CSDN" class="headerlink" title="CSDN"></a><a href="https://www.csdn.net/">CSDN</a></h3><pre><code>想必这个也不用什么介绍罢
-</code></pre>
-]]></content>
-  </entry>
-  <entry>
-    <title>前缀和</title>
-    <url>//post/%E5%89%8D%E7%BC%80%E5%92%8C.html</url>
-    <content><![CDATA[<p>前缀和可以将区间和优化成O(1)，即对于区间内的值之和，变成一个公式的计算，如一位前缀和对于[a,b]区间求和转化为S[b] - S[a - 1].</p>
-<h3 id="一维前缀和板子："><a href="#一维前缀和板子：" class="headerlink" title="一维前缀和板子："></a>一维前缀和板子：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">S[i] &#x3D; a[1] + a[2] + ... a[i] &#x2F;&#x2F;预处理
-a[l] + ... + a[r] &#x3D; S[r] - S[l - 1] &#x2F;&#x2F;调用</code></pre>
-
-<h3 id="二维前缀和板子："><a href="#二维前缀和板子：" class="headerlink" title="二维前缀和板子："></a>二维前缀和板子：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">&#x2F;&#x2F;S[i, j] &#x3D; 第i行j列格子左上部分所有元素的和
-&#x2F;&#x2F;以(x1, y1)为左上角，(x2, y2)为右下角的子矩阵的和为
-S[x2, y2] - S[x1 - 1, y2] - S[x2, y1 - 1] + S[x1 - 1, y1 - 1]
-
-S[ i , j ] &#x3D; S[ i - 1 , j ] + S[ i , j - 1] - S[ i - 1 , j - 1] + a[ i , j ]</code></pre>]]></content>
-      <categories>
-        <category>算法模板</category>
-        <category>前缀和</category>
-      </categories>
-      <tags>
-        <tag>算法模板</tag>
-        <tag>前缀和</tag>
       </tags>
   </entry>
   <entry>
@@ -943,27 +943,6 @@ for (int i &#x3D; n &#x2F; 2; i; i -- ) down(i);</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>差分</title>
-    <url>//post/%E5%B7%AE%E5%88%86.html</url>
-    <content><![CDATA[<p>差分用于大量的数组中部分数据的加减操作，不必再遍历部分区间进行加减，而是通过对部分位置的操作即可完成对区间所有元素的加减，最后再累加即可得到每个元素的值。</p>
-<h3 id="一维差分板子："><a href="#一维差分板子：" class="headerlink" title="一维差分板子："></a>一维差分板子：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">&#x2F;&#x2F;给区间[l, r]中的每个数加上c：
-B[l] +&#x3D; c, B[r + 1] -&#x3D; c
-&#x2F;&#x2F;初始化相当于在[i, i]插入一个值 </code></pre>
-
-<h3 id="二维差分板子："><a href="#二维差分板子：" class="headerlink" title="二维差分板子："></a>二维差分板子：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">&#x2F;&#x2F;a[i][j]是第i行j列格子左上部分所有元素的和
-&#x2F;&#x2F;给以(x1, y1)为左上角，(x2, y2)为右下角的子矩阵中的所有元素加上c：
-S[x1, y1] +&#x3D; c, S[x2 + 1, y1] -&#x3D; c, S[x1, y2 + 1] -&#x3D; c, S[x2 + 1, y2 + 1] +&#x3D; c
-&#x2F;&#x2F;初始化相当于在x1&#x3D;i,x2&#x3D;i,y1&#x3D;j,y2&#x3D;j处插入一个值</code></pre>]]></content>
-      <categories>
-        <category>算法模板</category>
-        <category>差分</category>
-      </categories>
-      <tags>
-        <tag>算法模板</tag>
-        <tag>差分</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>归并排序</title>
     <url>//post/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F.html</url>
     <content><![CDATA[<p>归并排序的速度一般都小于sort函数，一般用的很少，但该学还得学啊。</p>
@@ -997,6 +976,27 @@ S[x1, y1] +&#x3D; c, S[x2 + 1, y1] -&#x3D; c, S[x1, y2 + 1] -&#x3D; c, S[x2 + 1,
         <tag>算法模板</tag>
         <tag>排序模板</tag>
         <tag>归并排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>差分</title>
+    <url>//post/%E5%B7%AE%E5%88%86.html</url>
+    <content><![CDATA[<p>差分用于大量的数组中部分数据的加减操作，不必再遍历部分区间进行加减，而是通过对部分位置的操作即可完成对区间所有元素的加减，最后再累加即可得到每个元素的值。</p>
+<h3 id="一维差分板子："><a href="#一维差分板子：" class="headerlink" title="一维差分板子："></a>一维差分板子：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">&#x2F;&#x2F;给区间[l, r]中的每个数加上c：
+B[l] +&#x3D; c, B[r + 1] -&#x3D; c
+&#x2F;&#x2F;初始化相当于在[i, i]插入一个值 </code></pre>
+
+<h3 id="二维差分板子："><a href="#二维差分板子：" class="headerlink" title="二维差分板子："></a>二维差分板子：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">&#x2F;&#x2F;a[i][j]是第i行j列格子左上部分所有元素的和
+&#x2F;&#x2F;给以(x1, y1)为左上角，(x2, y2)为右下角的子矩阵中的所有元素加上c：
+S[x1, y1] +&#x3D; c, S[x2 + 1, y1] -&#x3D; c, S[x1, y2 + 1] -&#x3D; c, S[x2 + 1, y2 + 1] +&#x3D; c
+&#x2F;&#x2F;初始化相当于在x1&#x3D;i,x2&#x3D;i,y1&#x3D;j,y2&#x3D;j处插入一个值</code></pre>]]></content>
+      <categories>
+        <category>算法模板</category>
+        <category>差分</category>
+      </categories>
+      <tags>
+        <tag>算法模板</tag>
+        <tag>差分</tag>
       </tags>
   </entry>
   <entry>
@@ -1071,83 +1071,6 @@ if (tt &gt; 0)
         <tag>算法模板</tag>
         <tag>数据结构</tag>
         <tag>栈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>洛谷P1002[NOIP2002 普及组]过河卒</title>
-    <url>//post/%E6%B4%9B%E8%B0%B7P1002%5BNOIP2002%20%E6%99%AE%E5%8F%8A%E7%BB%84%5D%E8%BF%87%E6%B2%B3%E5%8D%92.html</url>
-    <content><![CDATA[<p>原题链接<a href="https://www.luogu.com.cn/problem/P1002">LuoguP1002</a></p>
-<h3 id="题目分析："><a href="#题目分析：" class="headerlink" title="题目分析："></a>题目分析：</h3><p>就是如果可以走到点(i，j)，那么方案数f(i, j) &#x3D; f(i - 1, j) + f(i, j - 1)。<br>数据范围：1 &lt;&#x3D; n, m &lt;&#x3D; 20，0 &lt;&#x3D; 马的坐标 &lt;&#x3D; 20。</p>
-<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
-using namespace std;
-
-int cx[8] &#x3D; &#123;1, 1, 2, 2, -1, -1, -2, -2&#125;;
-int cy[8] &#x3D; &#123;2, -2, 1, -1, 2, -2, 1, -1&#125;;
-
-int main()&#123;
-    int n, m, x, y;
-    cin &gt;&gt; n &gt;&gt; m &gt;&gt; x &gt;&gt; y;
-    long long f[25][25] &#x3D; &#123;&#125;;
-    int p[25][25] &#x3D; &#123;&#125;;
-    f[2][2] &#x3D; 1;
-    p[2][2]++;
-    n +&#x3D; 2;
-    m +&#x3D; 2;
-    x +&#x3D; 2;
-    y +&#x3D; 2;
-    p[x][y]++;
-    for (int i &#x3D; 0; i &lt; 8; i++)
-        p[x + cx[i]][y + cy[i]]++;
-    for (int i &#x3D; 2; i &lt;&#x3D; n; i++)
-        for (int j &#x3D; 2; j &lt;&#x3D; m; j++)
-            if (p[i][j] &#x3D;&#x3D; 0)
-                f[i][j] &#x3D; f[i - 1][j] + f[i][j - 1];
-    cout &lt;&lt; f[n][m];
-&#125;</code></pre>]]></content>
-      <categories>
-        <category>题记</category>
-        <category>洛谷</category>
-        <category>洛谷橙题</category>
-        <category>dp</category>
-      </categories>
-      <tags>
-        <tag>题记</tag>
-        <tag>洛谷</tag>
-        <tag>洛谷橙题</tag>
-        <tag>dp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>快速排序</title>
-    <url>//post/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.html</url>
-    <content><![CDATA[<p>虽然C++中sort的耗时与快排几乎一样，但是快排仍然需要我们去了解，板子也是要记住的，以便应对不能用sort排序，或是sort会耗时更大的情况。</p>
-<h3 id="板子如下："><a href="#板子如下：" class="headerlink" title="板子如下："></a>板子如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">void quick_sort(int q[], int l, int r)
-&#123;
-    if (l &gt;&#x3D; r) return;
-
-    int i &#x3D; l - 1, j &#x3D; r + 1, x &#x3D; q[l + r &gt;&gt; 1];
-    while (i &lt; j)
-    &#123;
-        do i ++ ; while (q[i] &lt; x);
-        do j -- ; while (q[j] &gt; x);
-        if (i &lt; j) swap(q[i], q[j]);
-    &#125;
-    quick_sort(q, l, j), quick_sort(q, j + 1, r);
-&#125;</code></pre>
-<h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h3><p>递归时若将j换为i,则应改为quick_sort(q, l, i - 1), quick_sort(q, i, r)；       且x一定不可取q[ l ]，可取q[ r ]或者q[( l + r + 1) &#x2F; 2]（l+r+1为了向上取整），若取到l，则会死循环；同理用j时，x不可取q[ r ]，不然会产生死循环。</p>
-<h3 id="以下是我的听课笔记，由Acwing-yxc讲解："><a href="#以下是我的听课笔记，由Acwing-yxc讲解：" class="headerlink" title="以下是我的听课笔记，由Acwing yxc讲解："></a>以下是我的听课笔记，由Acwing yxc讲解：</h3><h4 id="初步分析："><a href="#初步分析：" class="headerlink" title="初步分析："></a>初步分析：</h4><p>1.确定分界点 q[ l ]  q[ (l+r) &#x2F; 2]  q[ r ]<br>2.调整区间 左区间&lt;&#x3D;x  右区间&gt;&#x3D;x<br>3.递归处理左右两段</p>
-<h4 id="暴力做法："><a href="#暴力做法：" class="headerlink" title="暴力做法："></a>暴力做法：</h4><p>1.开两个额外数组a[ ]  b[ ]<br>2.扫描q[l ~ r]中&lt;&#x3D;x插入a[ ]中，&gt;x插入b[ ]中<br>3.先将a[ ]中数字放入q[ ]，再将b[ ]中数字放入q[ ]</p>
-<h4 id="优雅做法："><a href="#优雅做法：" class="headerlink" title="优雅做法："></a>优雅做法：</h4><p>1.l ~ r 区间，i指针l→r，j指针l←r<br>2.当i（或j）位置元素&gt;（或&lt;&#x3D;）x时，i（或j）指针停止移动<br>3.当i，j指针均停止移动时交换i，j位置元素<br>4.交换之后i，j指针再次移动，直到相遇（或穿过）（此时不交换元素），此时i指针左侧元素全部&lt;&#x3D;x，j指针右侧元素全部&gt;x</p>
-]]></content>
-      <categories>
-        <category>算法模板</category>
-        <category>排序模板</category>
-        <category>快速排序</category>
-      </categories>
-      <tags>
-        <tag>算法模板</tag>
-        <tag>排序模板</tag>
-        <tag>快速排序</tag>
       </tags>
   </entry>
   <entry>
@@ -1235,6 +1158,83 @@ int main()&#123;
       </tags>
   </entry>
   <entry>
+    <title>洛谷P1002[NOIP2002 普及组]过河卒</title>
+    <url>//post/%E6%B4%9B%E8%B0%B7P1002%5BNOIP2002%20%E6%99%AE%E5%8F%8A%E7%BB%84%5D%E8%BF%87%E6%B2%B3%E5%8D%92.html</url>
+    <content><![CDATA[<p>原题链接<a href="https://www.luogu.com.cn/problem/P1002">LuoguP1002</a></p>
+<h3 id="题目分析："><a href="#题目分析：" class="headerlink" title="题目分析："></a>题目分析：</h3><p>就是如果可以走到点(i，j)，那么方案数f(i, j) &#x3D; f(i - 1, j) + f(i, j - 1)。<br>数据范围：1 &lt;&#x3D; n, m &lt;&#x3D; 20，0 &lt;&#x3D; 马的坐标 &lt;&#x3D; 20。</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+
+int cx[8] &#x3D; &#123;1, 1, 2, 2, -1, -1, -2, -2&#125;;
+int cy[8] &#x3D; &#123;2, -2, 1, -1, 2, -2, 1, -1&#125;;
+
+int main()&#123;
+    int n, m, x, y;
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; x &gt;&gt; y;
+    long long f[25][25] &#x3D; &#123;&#125;;
+    int p[25][25] &#x3D; &#123;&#125;;
+    f[2][2] &#x3D; 1;
+    p[2][2]++;
+    n +&#x3D; 2;
+    m +&#x3D; 2;
+    x +&#x3D; 2;
+    y +&#x3D; 2;
+    p[x][y]++;
+    for (int i &#x3D; 0; i &lt; 8; i++)
+        p[x + cx[i]][y + cy[i]]++;
+    for (int i &#x3D; 2; i &lt;&#x3D; n; i++)
+        for (int j &#x3D; 2; j &lt;&#x3D; m; j++)
+            if (p[i][j] &#x3D;&#x3D; 0)
+                f[i][j] &#x3D; f[i - 1][j] + f[i][j - 1];
+    cout &lt;&lt; f[n][m];
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>题记</category>
+        <category>洛谷</category>
+        <category>洛谷橙题</category>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>题记</tag>
+        <tag>洛谷</tag>
+        <tag>洛谷橙题</tag>
+        <tag>dp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>快速排序</title>
+    <url>//post/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.html</url>
+    <content><![CDATA[<p>虽然C++中sort的耗时与快排几乎一样，但是快排仍然需要我们去了解，板子也是要记住的，以便应对不能用sort排序，或是sort会耗时更大的情况。</p>
+<h3 id="板子如下："><a href="#板子如下：" class="headerlink" title="板子如下："></a>板子如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">void quick_sort(int q[], int l, int r)
+&#123;
+    if (l &gt;&#x3D; r) return;
+
+    int i &#x3D; l - 1, j &#x3D; r + 1, x &#x3D; q[l + r &gt;&gt; 1];
+    while (i &lt; j)
+    &#123;
+        do i ++ ; while (q[i] &lt; x);
+        do j -- ; while (q[j] &gt; x);
+        if (i &lt; j) swap(q[i], q[j]);
+    &#125;
+    quick_sort(q, l, j), quick_sort(q, j + 1, r);
+&#125;</code></pre>
+<h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h3><p>递归时若将j换为i,则应改为quick_sort(q, l, i - 1), quick_sort(q, i, r)；       且x一定不可取q[ l ]，可取q[ r ]或者q[( l + r + 1) &#x2F; 2]（l+r+1为了向上取整），若取到l，则会死循环；同理用j时，x不可取q[ r ]，不然会产生死循环。</p>
+<h3 id="以下是我的听课笔记，由Acwing-yxc讲解："><a href="#以下是我的听课笔记，由Acwing-yxc讲解：" class="headerlink" title="以下是我的听课笔记，由Acwing yxc讲解："></a>以下是我的听课笔记，由Acwing yxc讲解：</h3><h4 id="初步分析："><a href="#初步分析：" class="headerlink" title="初步分析："></a>初步分析：</h4><p>1.确定分界点 q[ l ]  q[ (l+r) &#x2F; 2]  q[ r ]<br>2.调整区间 左区间&lt;&#x3D;x  右区间&gt;&#x3D;x<br>3.递归处理左右两段</p>
+<h4 id="暴力做法："><a href="#暴力做法：" class="headerlink" title="暴力做法："></a>暴力做法：</h4><p>1.开两个额外数组a[ ]  b[ ]<br>2.扫描q[l ~ r]中&lt;&#x3D;x插入a[ ]中，&gt;x插入b[ ]中<br>3.先将a[ ]中数字放入q[ ]，再将b[ ]中数字放入q[ ]</p>
+<h4 id="优雅做法："><a href="#优雅做法：" class="headerlink" title="优雅做法："></a>优雅做法：</h4><p>1.l ~ r 区间，i指针l→r，j指针l←r<br>2.当i（或j）位置元素&gt;（或&lt;&#x3D;）x时，i（或j）指针停止移动<br>3.当i，j指针均停止移动时交换i，j位置元素<br>4.交换之后i，j指针再次移动，直到相遇（或穿过）（此时不交换元素），此时i指针左侧元素全部&lt;&#x3D;x，j指针右侧元素全部&gt;x</p>
+]]></content>
+      <categories>
+        <category>算法模板</category>
+        <category>排序模板</category>
+        <category>快速排序</category>
+      </categories>
+      <tags>
+        <tag>算法模板</tag>
+        <tag>排序模板</tag>
+        <tag>快速排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>洛谷P3853[TJOI2007]路标设置</title>
     <url>//post/%E6%B4%9B%E8%B0%B7P3853%5BTJOI2007%5D%E8%B7%AF%E6%A0%87%E8%AE%BE%E7%BD%AE.html</url>
     <content><![CDATA[<p>原题链接<a href="https://www.luogu.com.cn/problem/P3853">LuoguP3853</a><br>用到的知识：<a href="https://smtty.github.io/2022/11/02/%E6%95%B4%E6%95%B0%E4%BA%8C%E5%88%86/">整数二分</a></p>
@@ -1291,34 +1291,6 @@ int main()&#123;
         <tag>二分查找</tag>
         <tag>洛谷</tag>
         <tag>洛谷绿题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>浮点二分</title>
-    <url>//post/%E6%B5%AE%E7%82%B9%E4%BA%8C%E5%88%86.html</url>
-    <content><![CDATA[<p>就是二分逼近答案，比方说二分法求零点。</p>
-<h3 id="板子如下："><a href="#板子如下：" class="headerlink" title="板子如下："></a>板子如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">bool check(double x) &#123;&#x2F;* ... *&#x2F;&#125; &#x2F;&#x2F; 检查x是否满足某种性质
-
-double bsearch_3(double l, double r)
-&#123;
-    const double eps &#x3D; 1e-6;   &#x2F;&#x2F; eps 表示精度，取决于题目对精度的要求
-    while (r - l &gt; eps)
-    &#123;
-        double mid &#x3D; (l + r) &#x2F; 2;
-        if (check(mid)) r &#x3D; mid;
-        else l &#x3D; mid;
-    &#125;
-    return l;
-&#125;</code></pre>]]></content>
-      <categories>
-        <category>算法模板</category>
-        <category>二分模板</category>
-        <category>浮点二分</category>
-      </categories>
-      <tags>
-        <tag>算法模板</tag>
-        <tag>二分模板</tag>
-        <tag>浮点二分</tag>
       </tags>
   </entry>
   <entry>
@@ -1383,6 +1355,66 @@ void remove(int a)
       </tags>
   </entry>
   <entry>
+    <title>高精度乘法</title>
+    <url>//post/%E9%AB%98%E7%B2%BE%E5%BA%A6%E4%B9%98%E6%B3%95.html</url>
+    <content><![CDATA[<p>一般只用到一个高精度乘一个小数。</p>
+<h3 id="板子如下："><a href="#板子如下：" class="headerlink" title="板子如下："></a>板子如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">&#x2F;&#x2F; C &#x3D; A * b, A &gt;&#x3D; 0, b &gt;&#x3D; 0
+vector&lt;int&gt; mul(vector&lt;int&gt; &amp;A, int b)
+&#123;
+    vector&lt;int&gt; C;
+
+    int t &#x3D; 0;
+    for (int i &#x3D; 0; i &lt; A.size() || t; i ++ )
+    &#123;
+        if (i &lt; A.size()) t +&#x3D; A[i] * b;
+        C.push_back(t % 10);
+        t &#x2F;&#x3D; 10;
+    &#125;
+
+    while (C.size() &gt; 1 &amp;&amp; C.back() &#x3D;&#x3D; 0) C.pop_back();
+
+    return C;
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>算法模板</category>
+        <category>高精度模板</category>
+        <category>高精度乘法</category>
+      </categories>
+      <tags>
+        <tag>算法模板</tag>
+        <tag>高精度模板</tag>
+        <tag>高精度乘法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浮点二分</title>
+    <url>//post/%E6%B5%AE%E7%82%B9%E4%BA%8C%E5%88%86.html</url>
+    <content><![CDATA[<p>就是二分逼近答案，比方说二分法求零点。</p>
+<h3 id="板子如下："><a href="#板子如下：" class="headerlink" title="板子如下："></a>板子如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">bool check(double x) &#123;&#x2F;* ... *&#x2F;&#125; &#x2F;&#x2F; 检查x是否满足某种性质
+
+double bsearch_3(double l, double r)
+&#123;
+    const double eps &#x3D; 1e-6;   &#x2F;&#x2F; eps 表示精度，取决于题目对精度的要求
+    while (r - l &gt; eps)
+    &#123;
+        double mid &#x3D; (l + r) &#x2F; 2;
+        if (check(mid)) r &#x3D; mid;
+        else l &#x3D; mid;
+    &#125;
+    return l;
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>算法模板</category>
+        <category>二分模板</category>
+        <category>浮点二分</category>
+      </categories>
+      <tags>
+        <tag>算法模板</tag>
+        <tag>二分模板</tag>
+        <tag>浮点二分</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>队列</title>
     <url>//post/%E9%98%9F%E5%88%97.html</url>
     <content><![CDATA[<h3 id="普通队列："><a href="#普通队列：" class="headerlink" title="普通队列："></a>普通队列：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">&#x2F;&#x2F; hh 表示队头，tt表示队尾
@@ -1431,6 +1463,36 @@ if (hh !&#x3D; tt)
         <tag>算法模板</tag>
         <tag>数据结构</tag>
         <tag>队列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高精度减法</title>
+    <url>//post/%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%87%8F%E6%B3%95.html</url>
+    <content><![CDATA[<h3 id="板子如下："><a href="#板子如下：" class="headerlink" title="板子如下："></a>板子如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">&#x2F;&#x2F; C &#x3D; A - B, 满足A &gt;&#x3D; B, A &gt;&#x3D; 0, B &gt;&#x3D; 0
+vector&lt;int&gt; sub(vector&lt;int&gt; &amp;A, vector&lt;int&gt; &amp;B)
+&#123;
+    vector&lt;int&gt; C;
+    for (int i &#x3D; 0, t &#x3D; 0; i &lt; A.size(); i ++ )
+    &#123;
+        t &#x3D; A[i] - t;
+        if (i &lt; B.size()) t -&#x3D; B[i];
+        C.push_back((t + 10) % 10);
+        if (t &lt; 0) t &#x3D; 1;
+        else t &#x3D; 0;
+    &#125;
+
+    while (C.size() &gt; 1 &amp;&amp; C.back() &#x3D;&#x3D; 0) C.pop_back();
+    return C;
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>算法模板</category>
+        <category>高精度模板</category>
+        <category>高精度减法</category>
+      </categories>
+      <tags>
+        <tag>算法模板</tag>
+        <tag>高精度模板</tag>
+        <tag>高精度减法</tag>
       </tags>
   </entry>
   <entry>
@@ -1483,68 +1545,6 @@ int get(int z)&#123;
       <tags>
         <tag>算法模板</tag>
         <tag>离散化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>高精度乘法</title>
-    <url>//post/%E9%AB%98%E7%B2%BE%E5%BA%A6%E4%B9%98%E6%B3%95.html</url>
-    <content><![CDATA[<p>一般只用到一个高精度乘一个小数。</p>
-<h3 id="板子如下："><a href="#板子如下：" class="headerlink" title="板子如下："></a>板子如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">&#x2F;&#x2F; C &#x3D; A * b, A &gt;&#x3D; 0, b &gt;&#x3D; 0
-vector&lt;int&gt; mul(vector&lt;int&gt; &amp;A, int b)
-&#123;
-    vector&lt;int&gt; C;
-
-    int t &#x3D; 0;
-    for (int i &#x3D; 0; i &lt; A.size() || t; i ++ )
-    &#123;
-        if (i &lt; A.size()) t +&#x3D; A[i] * b;
-        C.push_back(t % 10);
-        t &#x2F;&#x3D; 10;
-    &#125;
-
-    while (C.size() &gt; 1 &amp;&amp; C.back() &#x3D;&#x3D; 0) C.pop_back();
-
-    return C;
-&#125;</code></pre>]]></content>
-      <categories>
-        <category>算法模板</category>
-        <category>高精度模板</category>
-        <category>高精度乘法</category>
-      </categories>
-      <tags>
-        <tag>算法模板</tag>
-        <tag>高精度模板</tag>
-        <tag>高精度乘法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>高精度减法</title>
-    <url>//post/%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%87%8F%E6%B3%95.html</url>
-    <content><![CDATA[<h3 id="板子如下："><a href="#板子如下：" class="headerlink" title="板子如下："></a>板子如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">&#x2F;&#x2F; C &#x3D; A - B, 满足A &gt;&#x3D; B, A &gt;&#x3D; 0, B &gt;&#x3D; 0
-vector&lt;int&gt; sub(vector&lt;int&gt; &amp;A, vector&lt;int&gt; &amp;B)
-&#123;
-    vector&lt;int&gt; C;
-    for (int i &#x3D; 0, t &#x3D; 0; i &lt; A.size(); i ++ )
-    &#123;
-        t &#x3D; A[i] - t;
-        if (i &lt; B.size()) t -&#x3D; B[i];
-        C.push_back((t + 10) % 10);
-        if (t &lt; 0) t &#x3D; 1;
-        else t &#x3D; 0;
-    &#125;
-
-    while (C.size() &gt; 1 &amp;&amp; C.back() &#x3D;&#x3D; 0) C.pop_back();
-    return C;
-&#125;</code></pre>]]></content>
-      <categories>
-        <category>算法模板</category>
-        <category>高精度模板</category>
-        <category>高精度减法</category>
-      </categories>
-      <tags>
-        <tag>算法模板</tag>
-        <tag>高精度模板</tag>
-        <tag>高精度减法</tag>
       </tags>
   </entry>
   <entry>
