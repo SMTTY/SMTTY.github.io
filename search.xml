@@ -1475,8 +1475,70 @@ int main()&#123;
     &#125;
 &#125;</code></pre>
 
-<h3 id="其他解法："><a href="#其他解法：" class="headerlink" title="其他解法："></a>其他解法：</h3><p>树状数组和并查集好像也能做，俺先学学，以后一定填坑。</p>
-]]></content>
+<h3 id="其他解法："><a href="#其他解法：" class="headerlink" title="其他解法："></a>其他解法：</h3><p>树状数组和并查集好像也能做，俺先学学，以后一定填坑。<br>学会了，明天再写解析。</p>
+<h3 id="树状数组-amp-并查集代码如下："><a href="#树状数组-amp-并查集代码如下：" class="headerlink" title="树状数组&amp;并查集代码如下："></a>树状数组&amp;并查集代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cmath&gt;
+using namespace std;
+
+typedef long long ll;
+
+const int N &#x3D; 100100;
+
+ll tr[N * 4], a[N];
+int p[N], n, m;
+
+inline int find(int x)&#123;
+    if (p[x] !&#x3D; x)
+        p[x] &#x3D; find(p[x]);
+    return p[x];
+&#125;
+
+inline int lowbit(int x)&#123;
+    return x &amp; -x;
+&#125;
+
+inline void add(int x, ll c)&#123;
+    for (int i &#x3D; x; i &lt;&#x3D; n; i +&#x3D; lowbit(i))
+        tr[i] +&#x3D; c;
+&#125;
+
+inline ll sum(int x)&#123;
+    ll res &#x3D; 0;
+    for (int i &#x3D; x; i; i -&#x3D; lowbit(i))
+        res +&#x3D; tr[i];
+    return res;
+&#125;
+
+int main()&#123;
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )&#123;
+        scanf(&quot;%lld&quot;, &amp;a[i]);
+        add(i, a[i]);
+        p[i] &#x3D; i;
+    &#125;
+    scanf(&quot;%d&quot;, &amp;m);
+    p[n + 1] &#x3D; n + 1;
+    int k, l, r;
+    ll t;
+    while(m -- ) &#123;
+        scanf(&quot;%d%d%d&quot;, &amp;k, &amp;l, &amp;r);
+        if (l &gt; r)
+            swap(l, r);
+        if (k)
+            printf(&quot;%lld\n&quot;, sum(r) - sum(l - 1));
+        else
+            while(l &lt;&#x3D; r)&#123;
+                t &#x3D; (ll) sqrt(a[l]);
+                add(l, t - a[l]);
+                a[l] &#x3D; t;
+                if (t &#x3D;&#x3D; 1)
+                    p[l] &#x3D; l + 1, l &#x3D; find(l);
+                else
+                    ++l;
+            &#125;
+        &#125;
+
+&#125;</code></pre>]]></content>
       <categories>
         <category>题记</category>
         <category>洛谷</category>
