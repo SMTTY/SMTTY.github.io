@@ -1155,7 +1155,7 @@ if (tt &gt; 0)
     <title>洛谷P3853[TJOI2007]路标设置</title>
     <url>//post/%E6%B4%9B%E8%B0%B7P3853%5BTJOI2007%5D%E8%B7%AF%E6%A0%87%E8%AE%BE%E7%BD%AE.html</url>
     <content><![CDATA[<h3 id="原题链接："><a href="#原题链接：" class="headerlink" title="原题链接："></a>原题链接：</h3><p><a href="https://www.luogu.com.cn/problem/P3853">LuoguP3853</a></p>
-<h3 id="用到的知识："><a href="#用到的知识：" class="headerlink" title="用到的知识："></a>用到的知识：</h3><p><a href="https://smtty.github.io/2022/11/02/%E6%95%B4%E6%95%B0%E4%BA%8C%E5%88%86/">整数二分</a></p>
+<h3 id="用到的知识："><a href="#用到的知识：" class="headerlink" title="用到的知识："></a>用到的知识：</h3><p><a href="https://smtty.github.io/post/%E6%95%B4%E6%95%B0%E4%BA%8C%E5%88%86">整数二分</a></p>
 <h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>在一段长 L 的公路上某些地方设有 N 个路标（保证起点终点开始时都有路标），它们的位置是与起点的距离表示，但是有人还是嫌少，所以又要添加 K 个路标，路标可以添加到任意位置。<br>涉及的所有数据全部都为整数，2 &lt;&#x3D; N &lt;&#x3D; 10<sup>5</sup>，0 &lt;&#x3D; K &lt;&#x3D; 10<sup>5</sup>，0 &lt;&#x3D; L &lt;&#x3D; 10<sup>7</sup>。<br>已知：公路上相邻路标的最大距离定义为公路的空旷指数。<br>求：相邻路标求添加路标后的最小空旷指数的值。</p>
 <h3 id="做题历程："><a href="#做题历程：" class="headerlink" title="做题历程："></a>做题历程：</h3><h4 id="错误思路："><a href="#错误思路：" class="headerlink" title="错误思路："></a>错误思路：</h4><p>最开始我的想法是求出开始时全部相邻的路灯的距离，存入大根堆，然后循环K次，每次取出堆顶t，将其分为t &#x2F; 2，(t + 1) &#x2F; 2两部分后再次插入大根堆，最后的堆顶就是答案。<br>然后就是很自信的提交，就是很自信的WA。</p>
 <h4 id="分析错因："><a href="#分析错因：" class="headerlink" title="分析错因："></a>分析错因：</h4><p>再次分析不难发现如果某次最大距离是50，而剩余的操作次数是3次，按照上述思路，则被分为25，13，12；而不难发现分为17，17，16才是此时的最佳方案。也就是说一步一步的贪心是不够找到最小的最大值的。</p>
@@ -1214,7 +1214,7 @@ int main()&#123;
     <title>洛谷P1955[NOI2015]程序自动分析</title>
     <url>//post/%E6%B4%9B%E8%B0%B7P1955%5BNOI2015%5D%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%8A%A8%E5%88%86%E6%9E%90.html</url>
     <content><![CDATA[<h3 id="原题链接："><a href="#原题链接：" class="headerlink" title="原题链接："></a>原题链接：</h3><p><a href="https://www.luogu.com.cn/problem/P1955">LuoguP1955</a></p>
-<h3 id="用到的知识："><a href="#用到的知识：" class="headerlink" title="用到的知识："></a>用到的知识：</h3><p><a href="">并查集</a>、<a href="https://smtty.github.io/2022/11/07/%E7%A6%BB%E6%95%A3%E5%8C%96/">离散化</a></p>
+<h3 id="用到的知识："><a href="#用到的知识：" class="headerlink" title="用到的知识："></a>用到的知识：</h3><p><a href="">并查集</a>、<a href="https://smtty.github.io/post/%E7%A6%BB%E6%95%A3%E5%8C%96">离散化</a></p>
 <h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>总共有t个问题数；每次问题都是独立的，且每个问题都有若干条件，在每个问题中给出一个正整数n，代表条件的关系数，接下来的n行中每行有三个数i, j, e表示约束条件，当e为1时表示条件i &#x3D; 条件j，当e为0时表示条件i ≠ 条件j，问这些约束条件是否能够同时满足，若能输出YES，不能输出NO。<br>数据范围：1 &lt;&#x3D; t &lt;&#x3D; 10，1 &lt;&#x3D; n &lt;&#x3D; 10<sup>6</sup>，1 &lt;&#x3D; i,j &lt;&#x3D; 10<sup>9</sup>，e∈{0, 1}。</p>
 <h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>首先分析问题，如果两个条件相等可以看作在两个点之间连了一条无向边，即条件1&#x3D;条件2，条件2&#x3D;条件3，则可以推导出条件1&#x3D;条件3，可以发现连边可以表示为将两个集合合并，如果不等那么两个条件不处于同一集合，问题可用并查集解决；其次观察数据i,j的范围大小远大于2*n，为了并查集的初始化不超时，我们需要用到离散化去缩小数据范围，并且不需要保序，可以用哈希表进行无序离散化，直接用unordered_map解决离散化，且如果存在相悖条件，一定出现在不相等处，那么就可以先将相等关系合并，然后检查不相等关系是否成立，不成立则所有约束条件不能同时满足，反之可以同时满足。</p>
 <h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
@@ -1911,5 +1911,92 @@ int main()&#123;
     <title>树状数据结构整理</title>
     <url>//post/%E6%A0%91%E7%8A%B6%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%95%B4%E7%90%86.html</url>
     <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>洛谷P2802回家</title>
+    <url>//post/%E6%B4%9B%E8%B0%B7P2802%E5%9B%9E%E5%AE%B6.html</url>
+    <content><![CDATA[<h3 id="原题链接："><a href="#原题链接：" class="headerlink" title="原题链接："></a>原题链接：</h3><p><a href="https://www.luogu.com.cn/problem/P2802">LuoguP2802</a></p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>在一个n*m个方格组成的矩形内，每次可以向上下左右四个方向移动一格，共有五种属性的格子：<br>0. 障碍物（不可行走）</p>
+<ol>
+<li>空地</li>
+<li>起点</li>
+<li>终点</li>
+<li>带有治疗效果的空地<br>（除了障碍物均可自由行走）<br>刚开始时是满血6点，每移动一个需要耗费一点生命值以及一个单位时间；如果血量减为0，那么不能到达其他格子，即当血量为1点时，下一步哪怕是终点或者可以治疗生命，也无法到达，记为死亡；带有治疗效果的空地可以将血量补满；问：能否安全到家，如果能，输出最短需要多长时间，如果不能则输出-1；<br>数据范围：1 &lt;&#x3D; n, m &lt;&#x3D; 9。</li>
+</ol>
+<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p>很明显的广搜，跟别的地图题一样；对于广搜的队列中的元素，我们知道到达队头的位置一定小于等于队列中其他位置，那么最短时间等价于最先搜索到3；因为需要维护到达每个点的时间以及血量，我们需要一个结构体方便记录；对于扩列的过程，如果重复到达一个点，而第二次到达时血量更高，那么这种情况也应扩进队列，因为第一次到达该点一定在第二次到达前扩入队列，若能到达终点，则第二次到达无影响，如果不能到达终点，则需要尝试第二次更高血量这种情况，所以需要把标记升级一下，改成上一次到达时的血量，对于严格血量大于的情况我们插入队列，否则不插入，即可解决问题。</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+
+const int N &#x3D; 15;
+
+int n, m, sx, sy, ans;
+int g[N][N];
+int st[N][N];
+int fx[4] &#x3D; &#123;0, 0, 1, -1&#125;, fy[4] &#x3D; &#123;1, -1, 0, 0&#125;;
+
+struct Step&#123;
+    int x, y;
+    int t, hp;&#x2F;&#x2F;记录到达当前点所需时间和剩余血量
+&#125; q[N * N];
+
+void bfs()&#123;
+    int hh &#x3D; 0, tt &#x3D; 0;
+    q[0] &#x3D; &#123;sx, sy, 0, 6&#125;;
+
+    while (hh &lt;&#x3D; tt)&#123;
+        Step t &#x3D; q[hh++];
+        if (t.hp &#x3D;&#x3D; 1) continue;&#x2F;&#x2F;血量为1时到不了别的点，直接跳过
+
+        for (int i &#x3D; 0; i &lt; 4; i ++ )&#123;
+            int x &#x3D; t.x + fx[i], y &#x3D; t.y + fy[i];
+            &#x2F;&#x2F;超界不能走
+            if (x &lt; 0 || x &gt;&#x3D; n || y &lt; 0 || y &gt;&#x3D; m)
+                continue;
+            &#x2F;&#x2F;格子0不能走
+            if (!g[x][y]) continue;
+            &#x2F;&#x2F;如果当前血量少于历史到达这点的最大血量则不走
+            if (t.hp - 1 &lt;&#x3D; st[x][y]) continue;
+
+            &#x2F;&#x2F;格子4补满血量
+            if (g[x][y] &#x3D;&#x3D; 4) st[x][y] &#x3D; 6;
+            else st[x][y] &#x3D; t.hp - 1;
+            &#x2F;&#x2F;扩列
+            q[++tt] &#x3D; &#123;x, y, t.t + 1, st[x][y]&#125;;
+            &#x2F;&#x2F;如果到达终点，返回答案
+            if (g[x][y] &#x3D;&#x3D; 3)&#123;
+                ans &#x3D; t.t + 1;
+                return;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+int main()&#123;
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+    for (int i &#x3D; 0; i &lt; n; i ++ )
+        for (int j &#x3D; 0; j &lt; m; j ++ )&#123;
+            scanf(&quot;%d&quot;, &amp;g[i][j]);
+            if (g[i][j] &#x3D;&#x3D; 2)
+                sx &#x3D; i, sy &#x3D; j;
+        &#125;
+
+    &#x2F;&#x2F;预设答案为-1，如果到不了终点，ans为-1
+    ans &#x3D; -1;
+    bfs();
+
+    cout &lt;&lt; ans &lt;&lt; endl;
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>题记</category>
+        <category>洛谷</category>
+        <category>洛谷橙题</category>
+        <category>广搜</category>
+      </categories>
+      <tags>
+        <tag>题记</tag>
+        <tag>洛谷</tag>
+        <tag>洛谷橙题</tag>
+        <tag>广搜</tag>
+      </tags>
   </entry>
 </search>
