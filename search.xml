@@ -1805,6 +1805,7 @@ vector&lt;int&gt; div(vector&lt;int&gt; &amp;A, int b, int &amp;r)
 <li>将一些数从原来的区间中剪下来，把这些数重新排成一个或多个区间，最后形成一个或多个区间片段，使得这些区间的所有数恰好是原区间的所有数。</li>
 </ul>
 <p>随后给出q次询问，每次询问会给出左右端点，将这个区间分成一个或多个区间片段，使得每个片段内，任意元素出现的次数不严格大于[(x + 1)&#x2F;2]（x表示任意元素出现的次数,[]表示向下取整；即x&#x2F;2向上取整），输出满足条件可以分成的最小片段数。</p>
+<p>数据范围：1 &lt;&#x3D; n,q &lt;&#x3D; 3*10<sup>5</sup>，1 &lt;&#x3D; a<sub>i</sub> &lt;&#x3D; n，1 &lt;&#x3D; l &lt;&#x3D; r &lt;&#x3D; n。</p>
 <h3 id="线段树解法："><a href="#线段树解法：" class="headerlink" title="线段树解法："></a>线段树解法：</h3><p>首先说，线段树维护众数是不好维护的，但这个题，我们需要获取的是超过区间长度一半的众数，那也就是说，如果这个区间的众数没有超过区间长度的一半，就可以不用分段，换而言之，此时区间的众数对结果没有任何影响，所以我们只需要维护超过区间长度一半的众数即可。<br>接下来就是用线段树去维护超过区间长度一半的众数：</p>
 <ol>
 <li>先考虑如何获取一段区间内某个数字出现的次数，我们可以通过存储每个数字出现的位置，每个数字用一个vector数组去存储，然后用Lower_bound去获取大于等于左端点l的第一个位置，然后再用upper_bound获取大于右端点r的第一个位置，此时，二者的差值就是这个数字在[l, r]内出现的次数，注意右端点处要用upper_bound，因为出现长度的计算原理应该是 出现的最后一次 - 出现的第一次 + 1，而Lower_bound无法判断最后一次出现的位置是恰好在r，还是严格大于r，所以我们只需用upper_bound找到严格大于r的第一次出现，再减去1，即为出现次数。</li>
@@ -1997,6 +1998,143 @@ int main()&#123;
         <tag>洛谷</tag>
         <tag>洛谷橙题</tag>
         <tag>广搜</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CF242E.XOR on Segment</title>
+    <url>//post/CF242E.XOR%20on%20Segment.html</url>
+    <content><![CDATA[<h3 id="原题链接："><a href="#原题链接：" class="headerlink" title="原题链接："></a>原题链接：</h3><p><a href="https://codeforces.com/contest/242/problem/E">CF242E</a></p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>维护长度为n的序列a，并支持两张操作：</p>
+<ol>
+<li>求区间[l, r]的元素和(以op,l,r输入)</li>
+<li>把区间[l, r]的元素分别异或上x(以op,l,r,x输入)<br>输入格式：第一行一个n表示序列长度，第二行是长度为n的序列；第三行m表示操作的个数，接下来m行是操作。<br>数据范围：1 &lt;&#x3D; n &lt;&#x3D; 10<sup>5</sup>，1 &lt;&#x3D; m &lt;&#x3D; 5*10<sup>4</sup>，0 &lt;&#x3D; a<sub>i</sub> &lt;&#x3D; 10<sup>6</sup>，1 &lt;&#x3D; x &lt;&#x3D; 10<sup>6</sup>。</li>
+</ol>
+<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>读完题很明显是个线段树，再加上异或运算，我们很容易就想到用二进制去维护每一个元素的值，那么非叶子节点的值应该等于其左右儿子的值之和，不难发现，对于加法，如果我们不进位，转化到十进制，也不会错误的，比方说(10)<sub>2</sub>+(10)<sub>2</sub>&#x3D;(100)<sub>2</sub>&#x3D;4，如果不进位则为(20)以二进制的权位相加结果仍为4，也就是说每个根节点的值可以直接每一位加和(不用考虑进位)得到。<br>再分析区间异或运算，如果某一位上^0 时显然这一位是不变的，而当某一位^1 时相当于这一位上取反，那么对于一个区间的每一个元素的同一个位置上^1 就相当于将该位置的所有0变成1、所有1变成0，换而言之交换该根节点这一位置上01的个数；有个这个结论上传和懒标记也就有了思路，上传即统计每个位置上0和1的和，懒标记则记为0、1需要取反则为1，反之为0(偶数次取反则不用取反，所以懒标记统计也用异或)。<br>对于拆位后的值，我们仍可通过权位相加法得到原值。</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+
+typedef long long ll;
+
+const int N &#x3D; 100010;
+
+int n, m;
+int a[N];
+ll p[21];
+struct Node&#123;
+    int l, r;
+    int num[2][20];
+    short tag[20];
+&#125; tr[N * 4];
+&#x2F;&#x2F;tr[u]的第i位取反
+inline void swapnum(int u, int i)&#123;
+    swap(tr[u].num[0][i], tr[u].num[1][i]);
+&#125;
+&#x2F;&#x2F;上传
+inline void pushup(int u)&#123;
+    for (int i &#x3D; 0; i &lt; 20; i ++ )
+        tr[u].num[0][i] &#x3D; tr[u &lt;&lt; 1].num[0][i] + tr[u &lt;&lt; 1 | 1].num[0][i],
+        tr[u].num[1][i] &#x3D; tr[u &lt;&lt; 1].num[1][i] + tr[u &lt;&lt; 1 | 1].num[1][i];
+&#125;
+&#x2F;&#x2F;下放
+inline void pushdown(int u)&#123;
+    for (int i &#x3D; 0; i &lt; 20; i ++ )&#123;
+        if (!tr[u].tag[i])
+            continue;
+        tr[u &lt;&lt; 1].tag[i] ^&#x3D; tr[u].tag[i];
+        tr[u &lt;&lt; 1 | 1].tag[i] ^&#x3D; tr[u].tag[i];
+        swapnum(u &lt;&lt; 1, i), swapnum(u &lt;&lt; 1 | 1, i);
+        tr[u].tag[i] &#x3D; 0;
+    &#125;
+&#125;
+&#x2F;&#x2F;更新
+inline void update(int u, int x)&#123;
+    for (int i &#x3D; 0; i &lt; 20; i ++ )
+        if (x &gt;&gt; i &amp; 1)&#123;
+            tr[u].tag[i] ^&#x3D; 1;
+            swapnum(u, i);
+        &#125;
+&#125;
+&#x2F;&#x2F;求tr[u]的值
+inline ll getnum(int u)&#123;
+    ll res &#x3D; 0;
+    for (int i &#x3D; 0; i &lt; 20; i ++ )
+        res +&#x3D;(ll) p[i] * tr[u].num[1][i];
+    return res;
+&#125;
+
+void build(int u, int l, int r)&#123;
+    tr[u] &#x3D; &#123;l, r&#125;;
+    if(l &#x3D;&#x3D; r)&#123;
+        for (int i &#x3D; 0; i &lt; 20; i ++ )
+            tr[u].num[a[l] &gt;&gt; i &amp; 1][i] &#x3D; 1;
+        return;
+    &#125;
+    int mid &#x3D; l + r &gt;&gt; 1;
+    build(u &lt;&lt; 1, l, mid), build(u &lt;&lt; 1 | 1, mid + 1, r);
+    pushup(u);
+&#125;
+
+void modify(int u, int l, int r, int x)&#123;
+    if (tr[u].l &gt;&#x3D; l &amp;&amp; tr[u].r &lt;&#x3D; r)
+        update(u, x);
+    else&#123;
+        pushdown(u);
+        int mid &#x3D; tr[u].l + tr[u].r &gt;&gt; 1;
+        if (l &lt;&#x3D; mid) modify(u &lt;&lt; 1, l, r, x);
+        if (r &gt; mid) modify(u &lt;&lt; 1 | 1, l, r, x);
+        pushup(u);
+    &#125;
+&#125;
+
+ll query(int u, int l, int r)&#123;
+    if (tr[u].l &gt;&#x3D; l &amp;&amp; tr[u].r &lt;&#x3D; r)
+        return getnum(u);
+    else&#123;
+        pushdown(u);
+        int mid &#x3D; tr[u].l + tr[u].r &gt;&gt; 1;
+        ll res &#x3D; 0;
+        if (l &lt;&#x3D; mid) res &#x3D; query(u &lt;&lt; 1, l, r);
+        if (r &gt; mid) res +&#x3D; query(u &lt;&lt; 1 | 1, l, r);
+        return res;
+    &#125;
+&#125;
+
+int main()&#123;
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
+        scanf(&quot;%d&quot;, &amp;a[i]);
+
+    p[0] &#x3D; 1;
+    for (int i &#x3D; 1; i &lt;&#x3D; 20; i ++ )
+        p[i] &#x3D; p[i - 1] * 2;
+
+    build(1, 1, n);
+  
+    scanf(&quot;%d&quot;, &amp;m);
+    int op, l, r, x;
+    while (m -- )&#123;
+        scanf(&quot;%d%d%d&quot;, &amp;op, &amp;l, &amp;r);
+        if (op &#x3D;&#x3D; 1) printf(&quot;%lld\n&quot;, query(1, l, r));
+        else&#123;
+            scanf(&quot;%d&quot;, &amp;x);
+            modify(1, l, r, x);
+        &#125;
+    &#125;
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>题记</category>
+        <category>Codeforces</category>
+        <category>Codeforces Round#149 (Div. 2)</category>
+        <category>D2000</category>
+        <category>线段树</category>
+      </categories>
+      <tags>
+        <tag>题记</tag>
+        <tag>codeforces</tag>
+        <tag>线段树</tag>
+        <tag>D2000</tag>
+        <tag>Codeforces Round#149 (Div. 2)</tag>
       </tags>
   </entry>
 </search>
