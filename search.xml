@@ -2137,4 +2137,152 @@ vector&lt;int&gt; div(vector&lt;int&gt; &amp;A, int b, int &amp;r)
         <tag>高精度除法</tag>
       </tags>
   </entry>
+  <entry>
+    <title>CF240F.TorCoder</title>
+    <url>//post/CF240F.TorCoder.html</url>
+    <content><![CDATA[<h3 id="原题链接："><a href="#原题链接：" class="headerlink" title="原题链接："></a>原题链接：</h3><p><a href="https://codeforces.com/problemset/problem/240/F">CF240F</a></p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>给出一个长度为n的由’a’到’z’组成的字符串，有m次操作，每次操作将[l, r]这些位置的字符进行重排，得到字典序最小的回文字符串，如果无法组成回文字符串，则操作不进行，输出操作m次后的字符串。<br>输入输出要求：从文件 input.txt 中读入数据，输出到文件 output.txt 中。<br>数据范围：1 &lt;&#x3D; n,m &lt;&#x3D; 10<sup>5</sup>，1 &lt;&#x3D; l &lt;&#x3D; r &lt;&#x3D; n。</p>
+<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+using namespace std;
+
+const int N &#x3D; 100010;
+
+int n, m;
+char a[N];
+struct Node&#123;
+    int l, r;
+    int tag;
+    int t[26];
+&#125; tr[N * 4];
+&#x2F;&#x2F;将u节点全部更新为c
+inline void update(int u, int c)&#123;
+    memset(tr[u].t, 0, sizeof tr[u].t);
+    tr[u].t[c] &#x3D; tr[u].r - tr[u].l + 1;
+    tr[u].tag &#x3D; c;
+&#125;
+
+inline void pushup(int u)&#123;
+    for (int i &#x3D; 0; i &lt; 26; i ++ )
+        tr[u].t[i] &#x3D; tr[u &lt;&lt; 1].t[i] + tr[u &lt;&lt; 1 | 1].t[i];
+&#125;
+
+inline void pushdown(int u)&#123;
+    if (tr[u].tag &#x3D;&#x3D; -1) return;
+    update(u &lt;&lt; 1, tr[u].tag);
+    update(u &lt;&lt; 1 | 1, tr[u].tag);
+    tr[u].tag &#x3D; -1;
+&#125;
+
+void build(int u, int l, int r)&#123;
+    tr[u] &#x3D; &#123;l, r, -1&#125;;
+    if (l &#x3D;&#x3D; r)&#123;
+        tr[u].t[a[l] - &#39;a&#39;]++;
+        tr[u].tag &#x3D; a[l] - &#39;a&#39;;
+        return;
+    &#125;
+    int mid &#x3D; l + r &gt;&gt; 1;
+    build(u &lt;&lt; 1, l, mid), build(u &lt;&lt; 1 | 1, mid + 1, r);
+    pushup(u);
+&#125;
+
+void modify(int u, int l, int r, int c)&#123;
+    if (tr[u].l &gt;&#x3D; l &amp;&amp; tr[u].r &lt;&#x3D; r)
+        update(u, c);
+    else&#123;
+        int mid &#x3D; tr[u].l + tr[u].r &gt;&gt; 1;
+        pushdown(u);
+        if (l &lt;&#x3D; mid)
+            modify(u &lt;&lt; 1, l, r, c);
+        if (r &gt; mid)
+            modify(u &lt;&lt; 1 | 1, l, r, c);
+        pushup(u);
+    &#125;
+&#125;
+
+void query(int cnt[], int u, int l, int r)&#123;
+    if (tr[u].l &gt;&#x3D; l &amp;&amp; tr[u].r &lt;&#x3D; r)
+        for (int i &#x3D; 0; i &lt; 26; i ++ )
+            cnt[i] +&#x3D; tr[u].t[i];
+    else&#123;
+        pushdown(u);
+        int mid &#x3D; tr[u].l + tr[u].r &gt;&gt; 1;
+        if (l &lt;&#x3D; mid)
+            query(cnt, u &lt;&lt; 1, l, r);
+        if (r &gt; mid)
+            query(cnt, u &lt;&lt; 1 | 1, l, r);
+    &#125;
+&#125;
+
+void operate()&#123;
+    int l, r;
+    scanf(&quot;%d%d&quot;, &amp;l, &amp;r);
+    int len &#x3D; r - l + 1, odd &#x3D; 0, p &#x3D; -1, cnt[26] &#x3D; &#123;&#125;;
+    query(cnt, 1, l, r);
+    for (int i &#x3D; 0; i &lt; 26; i ++ )
+        if (cnt[i] &amp; 1)
+            odd++, p &#x3D; i;
+    if ((odd &#x3D;&#x3D; 1) &amp;&amp; (len &amp; 1))&#123;
+        &#x2F;&#x2F;都是奇数
+        int j &#x3D; 1;
+        for (int i &#x3D; 0; i &lt; 26; i ++ )&#123;
+            if (!cnt[i]) continue;
+
+            modify(1, l + j - 1, l + j - 1 + cnt[i] &#x2F; 2, i);
+            modify(1, r - j + 1 - cnt[i] &#x2F; 2, r - j + 1, i);
+            j +&#x3D; cnt[i] &#x2F; 2;
+        &#125;
+        modify(1, l + j - 1, l + j - 1, p);
+    &#125;else if(odd &#x3D;&#x3D; 0 &amp;&amp; ((len ^ 1) &amp; 1))&#123;
+        &#x2F;&#x2F;都是偶数
+        int j &#x3D; 1;
+        for (int i &#x3D; 0; i &lt; 26; i ++ )&#123;
+            if (!cnt[i]) continue;
+
+            modify(1, l + j - 1, l + j - 1 + cnt[i] &#x2F; 2, i);
+            modify(1, r - j + 1 - cnt[i] &#x2F; 2, r - j + 1, i);
+            j +&#x3D; cnt[i] &#x2F; 2;
+        &#125;
+    &#125;
+&#125;
+
+void printtree(int u, int l, int r)&#123;
+    if (l &#x3D;&#x3D; r)&#123;
+        printf(&quot;%c&quot;, tr[u].tag + &#39;a&#39;);
+        return;
+    &#125;
+    int mid &#x3D; l + r &gt;&gt; 1;
+    pushdown(u);
+    printtree(u &lt;&lt; 1, l, mid), printtree(u &lt;&lt; 1 | 1, mid + 1, r);
+&#125;
+
+int main()&#123;
+    freopen(&quot;input.txt&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;output.txt&quot;,&quot;w&quot;,stdout);
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+    scanf(&quot;%s&quot;, a + 1);
+
+    build(1, 1, n);
+
+    while (m -- )    
+        operate();
+
+    printtree(1, 1, n);
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>题记</category>
+        <category>Codeforces</category>
+        <category>Codeforces Round#145 (Div. 1, ACM-ICPC Rules)</category>
+        <category>D2600</category>
+        <category>线段树</category>
+      </categories>
+      <tags>
+        <tag>题记</tag>
+        <tag>codeforces</tag>
+        <tag>线段树</tag>
+        <tag>Codeforces Round#145 (Div. 1, ACM-ICPC Rules)</tag>
+        <tag>D2600</tag>
+      </tags>
+  </entry>
 </search>
