@@ -2290,7 +2290,7 @@ int main()&#123;
     <url>//post/2022icpcnanjingD.Chat%20Program.html</url>
     <content><![CDATA[<h3 id="测试链接："><a href="#测试链接：" class="headerlink" title="测试链接："></a>测试链接：</h3><p><a href="https://codeforces.com/gym/104128/problem/D">D.Chat Program</a><br><a href="https://codeforces.com/gym/104128/attachments/download/18620/contest-zh.pdf">中文题面在这里面找</a></p>
 <h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>题面很长，说人话就是，给一个长n的序列a，另外给出k,m,c,d四个整数，我们可以选择序列中的一个位置p(1 ≤ p ≤ n - m + 1)，并对于所有0 ≤ i &lt; m，将a<sub>p+i</sub>增加(c + di)，求至多进行一次操作后，序列中第k大的值最大可能为多少。<br>数据范围：1 ≤ k, m ≤ n ≤ 2 × 10<sup>5</sup>，0 ≤ c, d ≤ 10<sup>9</sup>，0 ≤ a<sub>i</sub> ≤ 10<sup>9</sup>。<br>输入格式：第一行五个整数：n, k, m, c, d；第二行n个整数a<sub>i</sub>。</p>
-<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>说实话，看到第k大，俺就想平衡树，结果呢，是个二分…<br>从时间复杂度上我们不难看出，如果写二分的话，那么check中的时间复杂度应该是O(n)的，显然很难想。</p>
+<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>说实话，看到第k大，俺就想平衡树，结果呢，是个二分…<br>首先，答案是唯一确定的，并且根据数据范围一定属于[0, 10<sup>18</sup>] (其实应该比10<sup>18</sup>要小,但这样更保险)，我们二分的根据就是可以讲这个区间划分为小于等于答案和大于答案两部分。<br>从时间复杂度上我们不难看出，如果写二分的话，那么check中的时间复杂度应该是O(n)的，显然很难想…<br>因为这个A搞了个差分，所以就不免往差分和前缀和这里去想了，结果还真能做；首先check返回true时表示传入的mid小于等于答案，即在最优的位置加上这个等差数列之后，大于等于mid的数的个数大于等于k，反之则为false；扫描一遍序列a，如果a<sub>i</sub>≥mid则cnt++，反之，尝试寻找一段有效区间(指首项允许加在的位置上)使得首项加在该区间任意位置后，可以使得该项大于等于mid，而记录这个区间，我们采用差分的方式，即构造一个差分数组s，令区间[l, r]的左s[l]++,右s[r + 1]–，这样再重新扫描一遍就可以得到，当等差数列加在最优位置后，可以多出多少个大于mid的数，再加上原来的cnt，最后与k比较，这样就线性的完成了这项工作。<br>然后这个题就可以A掉了吧…</p>
 <h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
 #include&lt;cstring&gt;
 #include&lt;cmath&gt;
@@ -2308,21 +2308,23 @@ int s[N];
 bool check(ll x)&#123;
     for (int i &#x3D; 0; i &lt;&#x3D; n + 1; i ++ )
         s[i] &#x3D; 0;
-    int cnt &#x3D; 0, t, p;
+    int cnt &#x3D; 0, l, r;
     for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
         if (a[i] &gt;&#x3D; x)
             cnt++;
         else&#123;
-            p &#x3D; i - m + 1;
+            &#x2F;&#x2F;首项最远的位置
+            l &#x3D; i - m + 1;
+            &#x2F;&#x2F;寻找右边界
             if (d !&#x3D; 0)
-                t &#x3D; std::min(int(i - ceil(double(x - a[i] - c) &#x2F; d)), i);
+                r &#x3D; std::min(int(i - ceil(double(x - a[i] - c) &#x2F; d)), i);
             else if (a[i] + c &gt;&#x3D; x)
-                t &#x3D; i;
+                r &#x3D; i;
             else
-                t &#x3D; -0x3f3f3f3f;
-
-            if (p &lt;&#x3D; t)
-                s[std::max(1, p)]++, s[std::max(0, t) + 1]--;
+                r &#x3D; -0x3f3f3f3f;
+            &#x2F;&#x2F;如果区间存在则记录，如果l&gt;r表示数列最大项加上也不够
+            if (l &lt;&#x3D; r)
+                s[std::max(1, l)]++, s[std::max(0, r) + 1]--;
         &#125;
     
     for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )&#123;
