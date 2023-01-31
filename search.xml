@@ -2288,7 +2288,7 @@ int main()&#123;
   <entry>
     <title>D.Chat Program</title>
     <url>//post/2022icpcnanjingD.Chat%20Program.html</url>
-    <content><![CDATA[<h3 id="测试链接："><a href="#测试链接：" class="headerlink" title="测试链接："></a>测试链接：</h3><p><a href="https://codeforces.com/gym/104128/problem/D">D.Chat Program</a><br><a href="https://codeforces.com/gym/104128/attachments/download/18620/contest-zh.pdf">中文题面在这里面找</a></p>
+    <content><![CDATA[<h3 id="链接："><a href="#链接：" class="headerlink" title="链接："></a>链接：</h3><p><a href="https://codeforces.com/gym/104128/submit">测试链接</a><br><a href="https://codeforces.com/gym/104128/attachments/download/18620/contest-zh.pdf">中文题面在这里面找</a></p>
 <h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>题面很长，说人话就是，给一个长n的序列a，另外给出k,m,c,d四个整数，我们可以选择序列中的一个位置p(1 ≤ p ≤ n - m + 1)，并对于所有0 ≤ i &lt; m，将a<sub>p+i</sub>增加(c + di)，求至多进行一次操作后，序列中第k大的值最大可能为多少。<br>数据范围：1 ≤ k, m ≤ n ≤ 2 × 10<sup>5</sup>，0 ≤ c, d ≤ 10<sup>9</sup>，0 ≤ a<sub>i</sub> ≤ 10<sup>9</sup>。<br>输入格式：第一行五个整数：n, k, m, c, d；第二行n个整数a<sub>i</sub>。</p>
 <h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>说实话，看到第k大，俺就想平衡树，结果呢，是个二分…<br>首先，答案是唯一确定的，并且根据数据范围一定属于[0, 10<sup>18</sup>] (其实应该比10<sup>18</sup>要小,但这样更保险)，我们二分的根据就是可以讲这个区间划分为小于等于答案和大于答案两部分。<br>从时间复杂度上我们不难看出，如果写二分的话，那么check中的时间复杂度应该是O(n)的，显然很难想…<br>因为这个A搞了个差分，所以就不免往差分和前缀和这里去想了，结果还真能做；首先check返回true时表示传入的mid小于等于答案，即在最优的位置加上这个等差数列之后，大于等于mid的数的个数大于等于k，反之则为false；扫描一遍序列a，如果a<sub>i</sub>≥mid则cnt++，反之，尝试寻找一段有效区间(指首项允许加在的位置上)使得首项加在该区间任意位置后，可以使得该项大于等于mid，而记录这个区间，我们采用差分的方式，即构造一个差分数组s，令区间[l, r]的左s[l]++,右s[r + 1]–，这样再重新扫描一遍就可以得到，当等差数列加在最优位置后，可以多出多少个大于mid的数，再加上原来的cnt，最后与k比较，这样就线性的完成了这项工作。<br>然后这个题就可以A掉了吧…</p>
 <h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
@@ -2364,6 +2364,109 @@ int main()&#123;
         <tag>icpc</tag>
         <tag>The 2022 ICPC Asia Nanjing Regional Contest</tag>
         <tag>二分答案</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A.Stop, Yesterday Please No More</title>
+    <url>//post/2022icpcnanjingA.Stop,%20Yesterday%20Please%20No%20More.html</url>
+    <content><![CDATA[<h3 id="链接："><a href="#链接：" class="headerlink" title="链接："></a>链接：</h3><p><a href="https://codeforces.com/gym/104128/submit">测试链接</a><br><a href="https://codeforces.com/gym/104128/attachments/download/18620/contest-zh.pdf">中文题面在这里面找</a></p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>给定一张n行m列的网格，在位于i<sub>h</sub>行j<sub>h</sub>列的格子上有且仅有一个洞，其他每个格子上都是空地且都有一只袋鼠。全部袋鼠被U,D,L,R控制，所有袋鼠会同时根据按下的按键移动，对于一只位于第i行j列的格子上的袋鼠(用(i, j)表示)：</p>
+<ol>
+<li>U：它会移动到(i - 1, j)；</li>
+<li>D：它会移动到(i + 1, j)；</li>
+<li>L：它会移动到(i, j - 1)；</li>
+<li>R：它会移动到(i, j + 1)。</li>
+</ol>
+<p>如果一只袋鼠踩到了洞或者移动到了网格外面，它将被从网格移除。<br>给出网格n*m，一个整数k，以及一系列操作(由’U’,’D’,’L’,’R’组成)；问网格中可能存在洞的位置有多少个，使得一系列操作后，网格内恰有k只袋鼠存留。<br>数据范围：第一行三个整数n,m,k：1 ≤ n,m ≤ 10<sup>3</sup>，0 ≤ k &lt; n * m;<br>第二行一个字符串表示一系列操作，且长度≤10<sup>6</sup>。</p>
+<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+using namespace std;
+
+#define endl &#39;\n&#39;
+
+const int N &#x3D; 1010;
+
+string op;
+
+int n, m, k;
+int U, D, L, R, U_, D_, L_, R_;
+bool st[N][N];
+int g[N][N];
+
+void add(int x1, int y1, int x2, int y2)&#123;
+    if (st[x1][y1])
+        return;
+    st[x1][y1] &#x3D; true;
+    g[x1][y1]++, g[x2 + 1][y1]--, g[x1][y2 + 1]--, g[x2 + 1][y2 + 1]++;
+&#125;
+
+void solve()&#123;
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; k &gt;&gt; op;
+    U_ &#x3D; L_ &#x3D; U &#x3D; L &#x3D; 1, R_ &#x3D; R &#x3D; m, D_ &#x3D; D &#x3D; n;
+    memset(st, false, sizeof st), memset(g, 0, sizeof g);
+
+    for (auto i: op)&#123;
+        if (i &#x3D;&#x3D; &#39;L&#39;)
+            L_++, R_++;
+        else if (i &#x3D;&#x3D; &#39;R&#39;)
+            L_--, R_--;
+        else if (i &#x3D;&#x3D; &#39;U&#39;)
+            U_++, D_++;
+        else
+            U_--, D_--;
+        L &#x3D; max(L, L_), R &#x3D; min(R, R_), U &#x3D; max(U, U_), D &#x3D; min(D, D_);
+    &#125;
+    if (U &gt; D || L &gt; R)&#123;
+        if (k)
+            puts(&quot;0&quot;);
+        else
+            cout &lt;&lt; n * m &lt;&lt; endl;
+        return;
+    &#125;
+
+    int x &#x3D; (D - U + 1) * (R - L + 1), cnt &#x3D; 0;
+    add(U, L, D, R);
+    for (auto i: op)&#123;
+        if (i &#x3D;&#x3D; &#39;L&#39;)
+            L--, R--;
+        else if (i &#x3D;&#x3D; &#39;R&#39;)
+            L++, R++;
+        else if (i &#x3D;&#x3D; &#39;U&#39;)
+            U--, D--;
+        else
+            U++, D++;
+        add(U, L, D, R);
+    &#125;
+    
+    for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
+        for (int j &#x3D; 1; j &lt;&#x3D; m; j ++ )
+            g[i][j] +&#x3D; g[i - 1][j] + g[i][j - 1] - g[i - 1][j - 1];
+
+    for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
+        for (int j &#x3D; 1; j &lt;&#x3D; m; j ++ )
+            if (x - g[i][j] &#x3D;&#x3D; k)
+                 cnt++;
+    cout &lt;&lt; cnt &lt;&lt; endl;
+&#125;
+
+int main()&#123;
+    int _;
+    cin &gt;&gt; _;
+    while (_ -- )
+        solve();
+&#125;</code></pre>]]></content>
+      <categories>
+        <category>题记</category>
+        <category>icpc</category>
+        <category>The 2022 ICPC Asia Nanjing Regional Contest</category>
+        <category>差分</category>
+      </categories>
+      <tags>
+        <tag>题记</tag>
+        <tag>差分</tag>
+        <tag>icpc</tag>
+        <tag>The 2022 ICPC Asia Nanjing Regional Contest</tag>
       </tags>
   </entry>
 </search>
