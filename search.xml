@@ -2378,7 +2378,8 @@ int main()&#123;
 <li>R：它会移动到(i, j + 1)。</li>
 </ol>
 <p>如果一只袋鼠踩到了洞或者移动到了网格外面，它将被从网格移除。<br>给出网格n*m，一个整数k，以及一系列操作(由’U’,’D’,’L’,’R’组成)；问网格中可能存在洞的位置有多少个，使得一系列操作后，网格内恰有k只袋鼠存留。<br>数据范围：第一行三个整数n,m,k：1 ≤ n,m ≤ 10<sup>3</sup>，0 ≤ k &lt; n * m;<br>第二行一个字符串表示一系列操作，且长度≤10<sup>6</sup>。</p>
-<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
+<h3 id="分析思路："><a href="#分析思路：" class="headerlink" title="分析思路："></a>分析思路：</h3><p>题非常简单，首先考虑到，如果洞不存在，那么一系列操作进行后，如果袋鼠还有剩余一定是一个矩阵；为了确定剩余袋鼠的矩阵，我们对上下左右四个(UDLR)边界分别设置一个临时变量，每次操作后，对左上边界与临时变量取max值，对右下取min值即可确定剩余矩阵的边界，在这个过程中，以L操作为例，L操作后袋鼠整体向左移，相对而言就是边界向右移，此时应该是左右边界的临时值分别++；确定完剩余的袋鼠之后，我们需要判断一下上下以及左右边界是否合法（如果上边界&lt;下边界，或左边界&gt;有边界，则说明没有剩余袋鼠），此时结合k值进行讨论，如果k&#x3D;0，场上任意位置均可以有洞，输出n * m，如果k≠0，则说明哪个位置存在洞都不能满足剩余k只袋鼠的条件，因为他们都出网格了，输出0。<br>上面特殊情况考虑完之后，我们轻松的得到，没有出网格的袋鼠数量为x &#x3D; (D - U + 1) * (R - L + 1)，因为最终要剩余k只袋鼠，那么将有(x - k)只袋鼠应当掉入洞中，则我们需要统计每个格子有多少只不同的袋鼠经过过，最终记录值(x - k)的格子数量；对于这个操作我们很容易就想到二维差分，我们通过模拟剩余的袋鼠的矩阵，每次将这个矩阵范围的格子++（记得初始矩阵也要统计），由于矩阵的大小已经是唯一确定的了，我们只需要开一个二维布尔数组统计左上(或右下)是否已经计过数，就可以很轻松的判重了，最后再用二维前缀和统计出答案输出即可。<br>这个题应该很容易A掉吧…</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include&lt;iostream&gt;
 #include&lt;algorithm&gt;
 #include&lt;cstring&gt;
 using namespace std;
@@ -2405,7 +2406,7 @@ void solve()&#123;
     cin &gt;&gt; n &gt;&gt; m &gt;&gt; k &gt;&gt; op;
     U_ &#x3D; L_ &#x3D; U &#x3D; L &#x3D; 1, R_ &#x3D; R &#x3D; m, D_ &#x3D; D &#x3D; n;
     memset(st, false, sizeof st), memset(g, 0, sizeof g);
-
+    &#x2F;&#x2F;确定边界
     for (auto i: op)&#123;
         if (i &#x3D;&#x3D; &#39;L&#39;)
             L_++, R_++;
@@ -2417,6 +2418,7 @@ void solve()&#123;
             U_--, D_--;
         L &#x3D; max(L, L_), R &#x3D; min(R, R_), U &#x3D; max(U, U_), D &#x3D; min(D, D_);
     &#125;
+    &#x2F;&#x2F;无袋鼠剩余情况
     if (U &gt; D || L &gt; R)&#123;
         if (k)
             puts(&quot;0&quot;);
@@ -2424,7 +2426,7 @@ void solve()&#123;
             cout &lt;&lt; n * m &lt;&lt; endl;
         return;
     &#125;
-
+    &#x2F;&#x2F;统计袋鼠经过格子的情况
     int x &#x3D; (D - U + 1) * (R - L + 1), cnt &#x3D; 0;
     add(U, L, D, R);
     for (auto i: op)&#123;
@@ -2438,7 +2440,7 @@ void solve()&#123;
             U++, D++;
         add(U, L, D, R);
     &#125;
-    
+    &#x2F;&#x2F;二位前缀和+统计答案
     for (int i &#x3D; 1; i &lt;&#x3D; n; i ++ )
         for (int j &#x3D; 1; j &lt;&#x3D; m; j ++ )
             g[i][j] +&#x3D; g[i - 1][j] + g[i][j - 1] - g[i - 1][j - 1];
