@@ -2368,7 +2368,7 @@ vector&lt;int&gt; div(vector&lt;int&gt; &amp;A, int b, int &amp;r)
   </entry>
   <entry>
     <title>A.Stop,Yesterday Please No More</title>
-    <url>//post/A.Stop,Yesterday%20Please%20No%20More.html</url>
+    <url>//post/2022icpcnanjingA.Stop,Yesterday%20Please%20No%20More.html</url>
     <content><![CDATA[<h3 id="链接："><a href="#链接：" class="headerlink" title="链接："></a>链接：</h3><p><a href="https://codeforces.com/gym/104128/submit">测试链接</a><br><a href="https://codeforces.com/gym/104128/attachments/download/18620/contest-zh.pdf">中文题面在这里面找</a></p>
 <h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>给定一张n行m列的网格，在位于i<sub>h</sub>行j<sub>h</sub>列的格子上有且仅有一个洞，其他每个格子上都是空地且都有一只袋鼠。全部袋鼠被U,D,L,R控制，所有袋鼠会同时根据按下的按键移动，对于一只位于第i行j列的格子上的袋鼠(用(i, j)表示)：</p>
 <ol>
