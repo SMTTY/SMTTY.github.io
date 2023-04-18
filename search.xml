@@ -2169,7 +2169,11 @@ double bsearch_3(double l, double r)
   <entry>
     <title>线段树整理</title>
     <url>//post/%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%95%B4%E7%90%86.html</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h3 id="基础线段树："><a href="#基础线段树：" class="headerlink" title="基础线段树："></a>基础线段树：</h3><p>区间加一个数，求区间和：<br><a href="https://www.luogu.com.cn/problem/P3372">P3372 【模板】线段树 1</a></p>
+<p>区间加或乘一个数，求区间和：<br>加和乘的懒标记优先级区别，即区间乘数时，加数标记也应乘<br><a href="https://www.luogu.com.cn/problem/P3373">P3373 【模板】线段树 2</a><br><a href="https://www.luogu.com.cn/problem/P2023">P2023 [AHOI2009] 维护序列</a></p>
+<p>区间加或乘一个数，求区间和和区间元素平方的和：<br>根据完全平方公式更新平方和<br><a href="https://ac.nowcoder.com/acm/contest/26896/1008">数据结构</a></p>
+<p>区间加一个数，求区间平均数或方差：<br>推导方差公式，得到区间方差&#x3D;区间元素平方的和&#x2F;元素个数-平均数的平方<br>根据完全平方公式更新平方和<br><a href="https://www.luogu.com.cn/problem/P1471">https://www.luogu.com.cn/problem/P1471</a></p>
+]]></content>
       <categories>
         <category>整理</category>
         <category>线段树</category>
