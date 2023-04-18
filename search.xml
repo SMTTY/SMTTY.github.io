@@ -2174,8 +2174,10 @@ double bsearch_3(double l, double r)
 <p>区间加一个等差数列，求单个元素：<br>维护差分数列，单点加首项，区间加公差，右端点减去等差数列和<br><a href="https://www.luogu.com.cn/problem/P1438">P1438 无聊的数列</a></p>
 <p>区间加或乘一个数，求区间和和区间元素平方的和：<br>根据完全平方公式更新平方和<br><a href="https://ac.nowcoder.com/acm/contest/26896/1008">数据结构</a></p>
 <p>区间加一个数，求区间平均数或方差：<br>推导方差公式，得到区间方差&#x3D;区间元素平方的和&#x2F;元素个数-平均数的平方<br>根据完全平方公式更新平方和<br><a href="https://www.luogu.com.cn/problem/P1471">P1471 方差</a></p>
-<h3 id="线段树单个元素修改终点："><a href="#线段树单个元素修改终点：" class="headerlink" title="线段树单个元素修改终点："></a>线段树单个元素修改终点：</h3><p>单点修改，区间取模，求区间和：<br>维护元素值外，维护区间最大值，如果最大值小于模数则不用取模，否则递归到叶子节点取模<br><a href="https://codeforces.com/problemset/problem/438/D">CF438D The Child and Sequence</a></p>
-<p>区间开平方，求区间和：<br>单个元素修改终点为1，记录区间和判断是否等于区间长度或者维护区间最大值是否为1也可，如果区间不全为1，递归修改至叶子节点<br><a href="https://www.luogu.com.cn/problem/P4145">P4145 上帝造题的七分钟 2 &#x2F; 花神游历各国</a></p>
+<h3 id="线段树统计区间信息："><a href="#线段树统计区间信息：" class="headerlink" title="线段树统计区间信息："></a>线段树统计区间信息：</h3><p>统计大于区间一半(上取整)的众数：<br><a href="https://www.luogu.com.cn/problem/CF1514D">CF1514D Cut and Stick</a></p>
+<p>单点修改，询问区间最大子段和：<br><a href="https://www.spoj.com/problems/GSS3/">GSS3 - Can you answer these queries III</a></p>
+<h3 id="线段树进行有终点的修改操作："><a href="#线段树进行有终点的修改操作：" class="headerlink" title="线段树进行有终点的修改操作："></a>线段树进行有终点的修改操作：</h3><p>单点修改，区间取模，求区间和：<br>维护元素值外，维护区间最大值，如果最大值小于模数则不用取模，否则递归到叶子节点取模<br><a href="https://codeforces.com/problemset/problem/438/D">CF438D The Child and Sequence</a></p>
+<p>区间开平方，求区间和：<br>单个元素修改终点为1，记录区间和判断是否等于区间长度或者维护区间最大值是否为1也可，如果区间不全为1，递归修改至叶子节点<br><a href="https://www.luogu.com.cn/problem/P4145">P4145 上帝造题的七分钟 2 &#x2F; 花神游历各国</a><br><a href="https://www.spoj.com/problems/GSS4/">GSS4 - Can you answer these queries IV</a></p>
 <p>区间开平方再乘10向上取整，求区间和<br>单个元素终点为0、99、100，其余同上<br><a href="https://ac.nowcoder.com/acm/contest/46800/G">鸡格线</a></p>
 <h3 id="线段树内维护数组："><a href="#线段树内维护数组：" class="headerlink" title="线段树内维护数组："></a>线段树内维护数组：</h3><p>重整字符串<br>每个节点记录区间每个字母出现的次数，单点或区间赋值重整<br><a href="https://codeforces.com/problemset/problem/558/E">CF558E A Simple Task</a><br><a href="https://codeforces.com/problemset/problem/240/F">CF240F TorCoder</a></p>
 <p>拆位线段树<br>将线段树维护的每个元素按位拆开，维护区间值<br><a href="https://codeforces.com/problemset/problem/242/E">CF242E XOR on Segment</a></p>
