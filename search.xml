@@ -2171,8 +2171,19 @@ double bsearch_3(double l, double r)
     <url>//post/%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%95%B4%E7%90%86.html</url>
     <content><![CDATA[<h3 id="基础线段树："><a href="#基础线段树：" class="headerlink" title="基础线段树："></a>基础线段树：</h3><p>区间加一个数，求区间和：<br><a href="https://www.luogu.com.cn/problem/P3372">P3372 【模板】线段树 1</a></p>
 <p>区间加或乘一个数，求区间和：<br>加和乘的懒标记优先级区别，即区间乘数时，加数标记也应乘<br><a href="https://www.luogu.com.cn/problem/P3373">P3373 【模板】线段树 2</a><br><a href="https://www.luogu.com.cn/problem/P2023">P2023 [AHOI2009] 维护序列</a></p>
+<p>区间加一个等差数列，求单个元素：<br>维护差分数列，单点加首项，区间加公差，右端点减去等差数列和<br><a href="https://www.luogu.com.cn/problem/P1438">P1438 无聊的数列</a></p>
 <p>区间加或乘一个数，求区间和和区间元素平方的和：<br>根据完全平方公式更新平方和<br><a href="https://ac.nowcoder.com/acm/contest/26896/1008">数据结构</a></p>
-<p>区间加一个数，求区间平均数或方差：<br>推导方差公式，得到区间方差&#x3D;区间元素平方的和&#x2F;元素个数-平均数的平方<br>根据完全平方公式更新平方和<br><a href="https://www.luogu.com.cn/problem/P1471">https://www.luogu.com.cn/problem/P1471</a></p>
+<p>区间加一个数，求区间平均数或方差：<br>推导方差公式，得到区间方差&#x3D;区间元素平方的和&#x2F;元素个数-平均数的平方<br>根据完全平方公式更新平方和<br><a href="https://www.luogu.com.cn/problem/P1471">P1471 方差</a></p>
+<h3 id="线段树单个元素修改终点："><a href="#线段树单个元素修改终点：" class="headerlink" title="线段树单个元素修改终点："></a>线段树单个元素修改终点：</h3><p>单点修改，区间取模，求区间和：<br>维护元素值外，维护区间最大值，如果最大值小于模数则不用取模，否则递归到叶子节点取模<br><a href="https://codeforces.com/problemset/problem/438/D">CF438D The Child and Sequence</a></p>
+<p>区间开平方，求区间和：<br>单个元素修改终点为1，记录区间和判断是否等于区间长度或者维护区间最大值是否为1也可，如果区间不全为1，递归修改至叶子节点<br><a href="https://www.luogu.com.cn/problem/P4145">P4145 上帝造题的七分钟 2 &#x2F; 花神游历各国</a></p>
+<p>区间开平方再乘10向上取整，求区间和<br>单个元素终点为0、99、100，其余同上<br><a href="https://ac.nowcoder.com/acm/contest/46800/G">鸡格线</a></p>
+<h3 id="线段树内维护数组："><a href="#线段树内维护数组：" class="headerlink" title="线段树内维护数组："></a>线段树内维护数组：</h3><p>重整字符串<br>每个节点记录区间每个字母出现的次数，单点或区间赋值重整<br><a href="https://codeforces.com/problemset/problem/558/E">CF558E A Simple Task</a><br><a href="https://codeforces.com/problemset/problem/240/F">CF240F TorCoder</a></p>
+<p>拆位线段树<br>将线段树维护的每个元素按位拆开，维护区间值<br><a href="https://codeforces.com/problemset/problem/242/E">CF242E XOR on Segment</a></p>
+<p>单点修改，求区间在十以内可能进制下最小值，按十进制数对10<sup>9</sup>+7取模后输出<br>维护区间最大值、每个节点区间中所有进制的值，再加权拼接<br><a href="https://ac.nowcoder.com/acm/contest/23479/B">进制</a></p>
+<h3 id="线段树离线操作："><a href="#线段树离线操作：" class="headerlink" title="线段树离线操作："></a>线段树离线操作：</h3><p>询问区间内只出现一次的元素<br><a href="https://codeforces.com/problemset/problem/1000/F">CF1000F One Occurrence</a></p>
+<p>询问区间内最大gcd<br><a href="http://acm.hdu.edu.cn/showproblem.php?pid=4630">HDU4630 No Pain No Game</a></p>
+<h3 id="线段树优化建图："><a href="#线段树优化建图：" class="headerlink" title="线段树优化建图："></a>线段树优化建图：</h3><p>区间向单点或单点向区间连单向边<br><a href="https://www.luogu.com.cn/problem/CF786B">CF786B Legacy</a></p>
+<h3 id="二位线段树——四分树："><a href="#二位线段树——四分树：" class="headerlink" title="二位线段树——四分树："></a>二位线段树——四分树：</h3><p><a href="https://www.luogu.com.cn/problem/P2086">P2086 [NOI2012] 魔幻棋盘</a></p>
 ]]></content>
       <categories>
         <category>整理</category>
