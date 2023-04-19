@@ -2236,7 +2236,7 @@ int get(int z)&#123;
 <p>单点修改，求区间在十以内可能进制下最小值，按十进制数对10<sup>9</sup>+7取模后输出<br>维护区间最大值、每个节点区间中所有进制的值，再加权拼接<br><a href="https://ac.nowcoder.com/acm/contest/23479/B">进制</a></p>
 <h3 id="线段树离线操作："><a href="#线段树离线操作：" class="headerlink" title="线段树离线操作："></a>线段树离线操作：</h3><p>询问区间内只出现一次的元素<br><a href="https://codeforces.com/problemset/problem/1000/F">CF1000F One Occurrence</a></p>
 <p>询问区间内最大gcd<br><a href="http://acm.hdu.edu.cn/showproblem.php?pid=4630">HDU4630 No Pain No Game</a></p>
-<h3 id="线段树优化建图："><a href="#线段树优化建图：" class="headerlink" title="线段树优化建图："></a>线段树优化建图：</h3><p>区间向单点或单点向区间连单向边<br><a href="https://www.luogu.com.cn/problem/CF786B">CF786B Legacy</a></p>
+<h3 id="线段树优化建图："><a href="#线段树优化建图：" class="headerlink" title="线段树优化建图："></a>线段树优化建图：</h3><p>区间向单点或单点向区间连单向边<br><a href="https://codeforces.com/problemset/problem/786/B">CF786B Legacy</a></p>
 <h3 id="二位线段树——四分树："><a href="#二位线段树——四分树：" class="headerlink" title="二位线段树——四分树："></a>二位线段树——四分树：</h3><p><a href="https://www.luogu.com.cn/problem/P2086">P2086 [NOI2012] 魔幻棋盘</a></p>
 ]]></content>
       <categories>
